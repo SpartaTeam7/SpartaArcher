@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/01.Scenes/StartScene.unity
+    path: Assets/IkJoon_Forder/01.Scenes/StartScene.unity
     guid: 4fc650a1c20904c569861479a14ca0af
   - enabled: 1
-    path: Assets/01.Scenes/SampleScene.unity
+    path: Assets/IkJoon_Forder/01.Scenes/BossStage.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
