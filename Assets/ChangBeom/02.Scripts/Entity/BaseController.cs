@@ -17,11 +17,13 @@ public class BaseController : MonoBehaviour
     protected StatHandler statHandler;
 
     [SerializeField] protected WeaponHandler weaponHandler;
+    protected AnimationHandler animationHandler;
 
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         statHandler = GetComponent<StatHandler>();
+        animationHandler = GetComponent<AnimationHandler>();
     }
 
     protected virtual void FixedUpdate()
@@ -35,6 +37,7 @@ public class BaseController : MonoBehaviour
         direction *= statHandler.Speed;
 
         rb.velocity = direction;
+        animationHandler.Move(direction);
 
         if(direction.magnitude > 0)
         {

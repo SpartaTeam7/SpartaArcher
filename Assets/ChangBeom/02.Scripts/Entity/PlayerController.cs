@@ -10,6 +10,7 @@ using static UnityEngine.UI.Image;
 
 public class PlayerController : BaseController
 {
+    [SerializeField] private SpriteRenderer chracterRenderer;
     [SerializeField] private GameObject[] monsterList;
     [SerializeField] private GameObject target;
     [SerializeField] private Transform attackPivot;
@@ -41,6 +42,18 @@ public class PlayerController : BaseController
                 StartCoroutine(OnFire());
             }
         }
+        else
+        {
+            Rotate(lookDirection);
+        }
+    }
+
+    private void Rotate(Vector2 direction)
+    {
+        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        bool isRight = Mathf.Abs(rotZ) < 90f;
+
+        chracterRenderer.flipX = isRight;
     }
 
     //  Input System으로 키입력을 받아 플레이어를 움직이는 함수
@@ -84,6 +97,15 @@ public class PlayerController : BaseController
             Vector3 targetDirection = target.transform.position - attackPivot.position;
             float angle = Mathf.Atan2(targetDirection.x, -targetDirection.y) * Mathf.Rad2Deg - 90f;
             attackPivot.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+            if(attackPivot.transform.right.x > 0)
+            {
+                chracterRenderer.flipX = true;
+            }
+            else
+            {
+                chracterRenderer.flipX = false;
+            }
         }
     }
 

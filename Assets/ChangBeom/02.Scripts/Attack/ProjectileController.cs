@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -7,9 +8,7 @@ public class ProjectileController : MonoBehaviour
 {
     [SerializeField] private bool isReady;
     private float currentDuration;
-
     private Rigidbody2D rb;
-
     private RangeWeaponHandler rangeWeaponHandler;
 
     private void Awake()
