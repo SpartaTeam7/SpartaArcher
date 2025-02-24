@@ -2,8 +2,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f; // 이동 속도
+    private StatHandler _stHandler;
+    public float moveSpeed; // 이동 속도
+    public float playerHp;
 
+    void Start()
+    {
+        _stHandler = GetComponent<StatHandler>();
+        moveSpeed = _stHandler.Speed;
+        playerHp = _stHandler.Health;
+
+    }
     void Update()
     {
         float moveX = Input.GetAxis("Horizontal"); // A, D 또는 왼쪽/오른쪽 화살표 키
