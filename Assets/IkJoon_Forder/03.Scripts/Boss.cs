@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class DemoPlayer : MonoBehaviour
+public class Boss : MonoBehaviour
 {
     private static readonly int Vertical = Animator.StringToHash("Vertical");
     private static readonly int Horizontal = Animator.StringToHash("Horizontal");
