@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttakHandler : MonoBehaviour
+public class WeaponHandler : MonoBehaviour
 {
     [SerializeField] private float delay = 0.5f;
-    public float Delray
+    public float Delay
     {
         get => delay;
         set => delay = value;
@@ -30,5 +30,10 @@ public class AttakHandler : MonoBehaviour
     {
         get => attackRange;
         set => attackRange = value;
+    }
+
+    public virtual void Attack()
+    {
+
     }
 }
