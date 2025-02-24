@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/IkJoon_Forder/01.Scenes/StartScene.unity
     guid: 4fc650a1c20904c569861479a14ca0af
   - enabled: 1
-    path: Assets/IkJoon_Forder/01.Scenes/BossStage.unity
+    path: Assets/ChangBeom/Scenes/PlayerTest.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
