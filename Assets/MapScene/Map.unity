@@ -1025,6 +1025,7 @@ GameObject:
   - component: {fileID: 981171632}
   - component: {fileID: 981171631}
   - component: {fileID: 981171633}
+  - component: {fileID: 981171634}
   m_Layer: 0
   m_Name: Obj
   m_TagString: Untagged
@@ -1264,6 +1265,21 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &981171634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981171629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9751139fb058940d5848a1abe0c0612a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleCount: 10
+  spawnRangeX: {x: -10, y: 10}
+  spawnRangeZ: {x: -10, y: 10}
 --- !u!1 &2076454064
 GameObject:
   m_ObjectHideFlags: 0
