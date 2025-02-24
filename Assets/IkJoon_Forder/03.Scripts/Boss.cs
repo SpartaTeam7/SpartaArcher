@@ -12,7 +12,7 @@ public class Boss : MonoBehaviour
     private Transform _player;
     public float followSpeed = 0.7f; // 기본 이동 속도
     private Vector2 _movement;
-    private float attackRange = 3f;
+    public float attackRange = 3f;
 
     private float _speedBoostTimer; // 이동속도 증가 타이머
     private float _speedBoostDuration = 1f; // 이동속도 증가 지속 시간 (1초)
