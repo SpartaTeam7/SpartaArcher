@@ -34,5 +34,9 @@ public class BaseController : MonoBehaviour
 
         rb.velocity = direction;
 
+        if(direction.magnitude > 0)
+        {
+            lookDirection = direction / statHandler.Speed;
+        }
     }
 }
