@@ -217,6 +217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 289704416}
+  - component: {fileID: 289704417}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -233,12 +234,33 @@ Transform:
   m_GameObject: {fileID: 289704415}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.3, y: 0.049, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 911747532}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &289704417
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289704415}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.17979586, y: 0.17979608, z: 1}
+  m_Center: {x: 0.026458228, y: 0.022048471, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,8 +393,8 @@ BoxCollider2D:
   m_Offset: {x: 0.012435585, y: 0.08938737}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.63602537, y: 0.19195399}
-    oldSize: {x: 0.59, y: 0.53}
+    pivot: {x: 0.57062274, y: 0.15651633}
+    oldSize: {x: 0.57, y: 0.65}
     newSize: {x: 0.59, y: 0.53}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -421,6 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followSpeed: 0.7
+  attackRange: 2.8
 --- !u!4 &911747532 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3820741013839462605, guid: 0737acb13a4e6144bac8f83d78376d52, type: 3}
@@ -980,7 +1003,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.49
-  playerHp: 0
 --- !u!50 &1888904303
 Rigidbody2D:
   serializedVersion: 4
@@ -1132,8 +1154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d342a59c1d71048b0b4ccccdc6e370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  health: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
