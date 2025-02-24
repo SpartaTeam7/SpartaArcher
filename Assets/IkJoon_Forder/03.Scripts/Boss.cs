@@ -9,7 +9,7 @@ public class Boss : MonoBehaviour
     private static readonly int Attack = Animator.StringToHash("Attack");
 
     private Animator _animator;
-    private Transform _player;
+    private Transform _playerTf;
     private StatHandler _playerStatHandler;
 
     public float followSpeed = 0.7f;
@@ -28,18 +28,16 @@ public class Boss : MonoBehaviour
         _animator = GetComponent<Animator>();
         if (_animator == null)
         {
-            Debug.LogError("[Boss] Can't find 'Animator' component on this GameObject.");
             return;
         }
 
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj == null)
         {
-            Debug.LogError("[Boss] Can't find GameObject with tag 'Player'");
             return;
         }
 
-        _player = playerObj.transform;
+        _playerTf = playerObj.transform;
         _playerStatHandler = playerObj.GetComponent<StatHandler>();
 
         if (_playerStatHandler == null)
@@ -50,7 +48,7 @@ public class Boss : MonoBehaviour
 
     private void Update()
     {
-        if (_player == null)
+        if (_playerTf == null)
             return;
 
         // 10초마다 이동속도 증가
@@ -66,7 +64,7 @@ public class Boss : MonoBehaviour
         _speedBoostTimer -= Time.deltaTime;
 
         // 플레이어가 공격 범위 안에 있는지 확인
-        bool isPlayerInRange = Vector2.Distance(transform.position, _player.position) <= attackRange;
+        bool isPlayerInRange = Vector2.Distance(transform.position, _playerTf.position) <= attackRange;
         _animator.SetBool(Attack, isPlayerInRange);
 
         if (isPlayerInRange && !_playerInRange)
@@ -86,9 +84,9 @@ public class Boss : MonoBehaviour
 
     private void FollowPlayer()
     {
-        Vector2 direction = (_player.position - transform.position).normalized;
+        Vector2 direction = (_playerTf.position - transform.position).normalized;
         _movement = direction;
-        transform.position = Vector2.Lerp(transform.position, _player.position, followSpeed * Time.deltaTime);
+        transform.position = Vector2.Lerp(transform.position, _playerTf.position, followSpeed * Time.deltaTime);
     }
 
     private void UpdateAnimation()
