@@ -16,6 +16,8 @@ public class BaseController : MonoBehaviour
 
     protected StatHandler statHandler;
 
+    [SerializeField] protected WeaponHandler weaponHandler;
+
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -37,6 +39,14 @@ public class BaseController : MonoBehaviour
         if(direction.magnitude > 0)
         {
             lookDirection = direction / statHandler.Speed;
+        }
+    }
+
+    protected virtual void Attack()
+    {
+        if (lookDirection != Vector2.zero)
+        {
+            weaponHandler.Attack();
         }
     }
 }
