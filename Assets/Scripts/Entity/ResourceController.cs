@@ -26,6 +26,22 @@ public class ResourceController : MonoBehaviour
     [SerializeField] private float evasionChance;
     public float EvasionChance { get => evasionChance; set => evasionChance = value; }
 
+    [SerializeField] private bool isFlying;
+    public bool IsFlying
+    {
+        get => isFlying;
+        set
+        {
+            if (isFlying == value) return; // 값이 변하지 않으면 실행할 필요 없음
+
+            isFlying = value;
+            if (isFlying)
+                StartFlying();
+            else
+                StopFlying();
+        }
+    }
+
     [SerializeField] private float extraLife;
     public float ExtraLife { get => extraLife; set => extraLife = value; }
 
@@ -49,11 +65,11 @@ public class ResourceController : MonoBehaviour
         {
             yield return new WaitForSeconds(10f); // 10초 대기
             isInvincible = true;
-            Debug.Log("🔹 무적 상태 ON");
+            // Debug.Log("🔹 무적 상태 ON");
 
             yield return new WaitForSeconds(invincibleTime); // 무적 유지 시간 대기
             isInvincible = false;
-            Debug.Log("⚡ 무적 상태 OFF");
+            // Debug.Log("⚡ 무적 상태 OFF");
         }
     }
 
@@ -100,6 +116,16 @@ public class ResourceController : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void StartFlying()
+    {
+        gameObject.layer = LayerMask.NameToLayer("FlyingPlayer");
+    }
+
+    public void StopFlying()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
     private void Death()

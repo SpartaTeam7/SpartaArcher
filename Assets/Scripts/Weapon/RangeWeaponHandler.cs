@@ -75,8 +75,6 @@ public class RangeWeaponHandler : WeaponHandler
     private void CreateProjectile(Vector2 _lookDirection, float angle, int index)
     {
         float offset = (index % 2 == 0 ? -1f : 1f) * 0.2f * ((index + 1) / 2);
-        Debug.Log(index);
-        Debug.Log(offset);
         Vector3 indexOffset = new Vector3(0, offset, 0);
         Vector3 projectileSpawnPositionIndex = projectileSpawnPosition.position + indexOffset;
         projectileManager.ShootBullet(
