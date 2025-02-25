@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
@@ -34,11 +35,23 @@ public class Boss : MonoBehaviour
     public GameObject attackEffect;
     public GameObject buffEffect;
     
+    #region healthBar
+    [SerializeField] private Image fillHealthBar;
+    [SerializeField] private Text healthText;
+    [SerializeField] private bool isShowHpNum = true;
+    [SerializeField] private bool isHealthAnim = true;
+
+    private float currentFill;
+
+    public float fullHealth;
+
+    #endregion
 
     void Start()
     {
         _stHandler = GetComponent<StatHandler>();
         bossHp = _stHandler.Health;
+        
 
         _animator = GetComponent<Animator>();
         if (_animator == null)
@@ -61,6 +74,9 @@ public class Boss : MonoBehaviour
         }
         attackEffect.SetActive(false);
         buffEffect.SetActive(false);
+
+         currentFill = 1f;
+        UpdateHealthBar();
     }
 
     private void Update()
@@ -111,6 +127,7 @@ public class Boss : MonoBehaviour
 
     FollowPlayer();
     UpdateAnimation();
+    UpdateHealthBar();
 }
 
 
@@ -179,5 +196,20 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
 
         gameObject.SetActive(false); // 오브젝트 비활성화
+    }
+    private void UpdateHealthBar()
+    {
+        float healthPer = bossHp / fullHealth;
+        if(isHealthAnim)
+        {
+            currentFill = Mathf.Lerp(currentFill, healthPer, Time.deltaTime * 5);
+        }else
+        {
+            currentFill = healthPer;
+        }
+
+        fillHealthBar.fillAmount = currentFill;
+        healthText.text = $"{(int)bossHp} / {(int)fullHealth}";
+        healthText.enabled = isShowHpNum;
     }
 }
