@@ -13,9 +13,10 @@ public class PlayerController : BaseController
     [SerializeField] private SpriteRenderer chracterRenderer;
     [SerializeField] private GameObject[] monsterList;
     [SerializeField] private GameObject target;
+    [SerializeField] private GameObject aim;
     [SerializeField] private Transform attackPivot;
 
-    [SerializeField ]private float fireDelay = 0.5f;
+    [SerializeField] private float fireDelay = 0.5f;
 
     private Vector3 direction;
     public Vector3 Direction
@@ -36,7 +37,8 @@ public class PlayerController : BaseController
         if (movementDirection.magnitude < 0.7f)
         {
             OnLook();
-            if (!isFire)
+
+            if (!isFire && monsterList.Length > 0)
             {
                 isFire = true;
                 StartCoroutine(OnFire());
@@ -46,6 +48,8 @@ public class PlayerController : BaseController
         {
             Rotate(lookDirection);
         }
+
+        TargetAim();
     }
 
     private void Rotate(Vector2 direction)
@@ -76,15 +80,17 @@ public class PlayerController : BaseController
         {
             float minDistance = 999999f;
 
+            int layerMask = LayerMask.GetMask("Enemy") | LayerMask.GetMask("Level");
+
             foreach (var monster in monsterList)
             {
                 direction = monster.transform.position - attackPivot.position;
                 float distance = Vector3.Distance(monster.transform.position, attackPivot.position);
 
-                RaycastHit2D hit = Physics2D.Raycast(attackPivot.position, direction.normalized, distance, LayerMask.GetMask("Enemy"));
+                RaycastHit2D hit = Physics2D.Raycast(attackPivot.position, direction.normalized, distance, layerMask);
                 Debug.DrawRay(attackPivot.position, direction.normalized * distance, Color.red);
 
-                if (hit.collider != null)
+                if (hit.collider != null && hit.collider.gameObject.CompareTag("Enemy"))
                 {
                     if (minDistance > distance)
                     {
@@ -98,7 +104,7 @@ public class PlayerController : BaseController
             float angle = Mathf.Atan2(targetDirection.x, -targetDirection.y) * Mathf.Rad2Deg - 90f;
             attackPivot.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
-            if(attackPivot.transform.right.x > 0)
+            if (attackPivot.transform.right.x > 0)
             {
                 chracterRenderer.flipX = true;
             }
@@ -114,5 +120,18 @@ public class PlayerController : BaseController
         Attack();
         yield return new WaitForSeconds(fireDelay);
         isFire = false;
+    }
+
+    private void TargetAim()
+    {
+        if (monsterList.Length <= 0)
+        {
+            aim.SetActive(false);
+        }
+        else
+        {
+            aim.SetActive(true);
+            aim.transform.position = target.transform.position;
+        }
     }
 }
