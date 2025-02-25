@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 238308990}
   - component: {fileID: 238308991}
   m_Layer: 0
-  m_Name: Square
+  m_Name: playerImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,11 +228,11 @@ Transform:
   m_GameObject: {fileID: 238308989}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -224, y: 443, z: 0}
+  m_LocalPosition: {x: -224, y: 3, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 847340982}
+  m_Father: {fileID: 927703549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &238308991
 SpriteRenderer:
@@ -398,7 +398,6 @@ RectTransform:
   - {fileID: 1228210396}
   - {fileID: 1281531972}
   - {fileID: 927703549}
-  - {fileID: 238308990}
   m_Father: {fileID: 1369498448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -475,6 +474,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 110492656}
+  - {fileID: 238308990}
   m_Father: {fileID: 847340982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
