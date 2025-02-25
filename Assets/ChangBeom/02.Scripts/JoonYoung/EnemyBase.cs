@@ -89,7 +89,7 @@ public class EnemyBase : MonoBehaviour
             if (collision.transform.CompareTag("Player")) // 플레이어와 충돌한 경우
             {
                 // 플레이어에 피해를 입히는 로직
-               // collision.transform.GetComponent<Player>().TakeDamage(damage); // 플레이어의 TakeDamage 함수 호출
+                // collision.transform.GetComponent<Player>().TakeDamage(damage); // 플레이어의 TakeDamage 함수 호출
                 Destroy(gameObject);  // 발사체 제거
             }
             else if (collision.transform.CompareTag("Wall")) // 벽과 충돌한 경우
