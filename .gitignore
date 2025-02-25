@@ -75,4 +75,4 @@ crashlytics-build.properties
 .vscode/extensions.json
 .vscode/launch.json
 .vscode/settings.json
-#DS_Store
+#.DS_Store
