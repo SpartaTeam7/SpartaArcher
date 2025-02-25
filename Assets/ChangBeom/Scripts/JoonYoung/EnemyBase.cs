@@ -79,4 +79,23 @@ public class EnemyBase : MonoBehaviour
             }
         }
     }
+    public class Projectile : MonoBehaviour
+    {
+        public float damage = 20f; // 발사체의 데미지
+
+        // 충돌 시 처리되는 로직
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.transform.CompareTag("Player")) // 플레이어와 충돌한 경우
+            {
+                // 플레이어에 피해를 입히는 로직
+               // collision.transform.GetComponent<Player>().TakeDamage(damage); // 플레이어의 TakeDamage 함수 호출
+                Destroy(gameObject);  // 발사체 제거
+            }
+            else if (collision.transform.CompareTag("Wall")) // 벽과 충돌한 경우
+            {
+                Destroy(gameObject); // 발사체 제거
+            }
+        }
+    }
 }
