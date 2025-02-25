@@ -45,7 +45,9 @@ public class ProjectileController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         bool isCritical = Random.Range(0f, 100f) < rangeWeaponHandler.CriticalChance; // 크리티컬 계산
+        bool isBerserker = SkillManager.Instance.BerserkerMode;
         float damage = isCritical ? -rangeWeaponHandler.Power * rangeWeaponHandler.CriticalDamage : -rangeWeaponHandler.Power;
+        damage = isBerserker ? damage * SkillManager.Instance.PlayerHealthPersent : damage;
 
         if (levelCollisionLayer.value == (levelCollisionLayer.value | (1 << collision.gameObject.layer)))
         {

@@ -24,6 +24,8 @@ public class SkillManager : MonoBehaviour
     private ResourceController resourceController;
     private StatHandler statHandler;
 
+    public float PlayerHealthPersent { get; private set; }
+
     private bool berserkerMode;
     public bool BerserkerMode { get => berserkerMode; }
 
@@ -38,6 +40,7 @@ public class SkillManager : MonoBehaviour
         rangeWeaponHandler = GetComponentInChildren<RangeWeaponHandler>();
         resourceController = GetComponent<ResourceController>();
         statHandler = GetComponent<StatHandler>();
+        PlayerHealthPersent = 1 + (statHandler.Health - resourceController.CurrentHealth) / statHandler.Health;
 
         if (rangeWeaponHandler == null)
         {
@@ -243,7 +246,7 @@ public class SkillManager : MonoBehaviour
         statHandler.Health = Mathf.Max(1, statHandler.Health + MaxHealthChange);
     }
 
-    public void BerserkerModeOn() //구현 해야됨
+    public void BerserkerModeOn()
     {
         berserkerMode = true;
     }
