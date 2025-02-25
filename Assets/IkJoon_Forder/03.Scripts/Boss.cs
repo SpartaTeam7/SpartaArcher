@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
@@ -8,7 +9,11 @@ public class Boss : MonoBehaviour
     private static readonly int Horizontal = Animator.StringToHash("Horizontal");
     private static readonly int Walk = Animator.StringToHash("Walk");
     private static readonly int Attack = Animator.StringToHash("Attack");
+    private static readonly int Die = Animator.StringToHash("IsDie");
 
+    public float bossHp;
+    public bool isDead = false;
+    private StatHandler _stHandler;
     private Animator _animator;
     private Transform _playerTf;
     private StatHandler _playerStatHandler;
@@ -24,12 +29,30 @@ public class Boss : MonoBehaviour
     private float _boostInterval = 10f;
     private float _timeSinceLastBoost;
 
+
+
+
     public GameObject attackEffect;
     public GameObject buffEffect;
     
+    #region healthBar
+    [SerializeField] private Image fillHealthBar;
+    [SerializeField] private Text healthText;
+    [SerializeField] private bool isShowHpNum = true;
+    [SerializeField] private bool isHealthAnim = true;
+
+    private float currentFill;
+
+    public float fullHealth;
+
+    #endregion
 
     void Start()
     {
+        _stHandler = GetComponent<StatHandler>();
+        bossHp = _stHandler.Health;
+        
+
         _animator = GetComponent<Animator>();
         if (_animator == null)
         {
@@ -51,11 +74,14 @@ public class Boss : MonoBehaviour
         }
         attackEffect.SetActive(false);
         buffEffect.SetActive(false);
+
+         currentFill = 1f;
+        UpdateHealthBar();
     }
 
     private void Update()
 {
-    if (_playerTf == null)
+    if (_playerTf == null || isDead)
         return;
 
     // 10초마다 이동속도 증가
@@ -92,9 +118,16 @@ public class Boss : MonoBehaviour
         _isAttacking = false;
         if (attackEffect != null) attackEffect.SetActive(false);
     }
+    
+    if(bossHp <= 0)
+    {
+        HandleDeath();
+        return;
+    }
 
     FollowPlayer();
     UpdateAnimation();
+    UpdateHealthBar();
 }
 
 
@@ -141,5 +174,42 @@ public class Boss : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+    private void HandleDeath()
+    {
+        if(isDead) return;
+        isDead = true;
+        _animator.SetBool(Die, true); // 사망 애니메이션 실행
+        Debug.Log("[Boss] Boss has died!");
 
+        // 일정 시간 후 오브젝트 비활성화 (애니메이션 재생 후 사라지게 함)
+        StartCoroutine(DisableAfterDeath());
+    }
+    private IEnumerator DisableAfterDeath()
+    {
+        // 현재 실행 중인 애니메이션이 "Death"인지 확인하고 대기
+        while (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+        {
+            yield return null; // 다음 프레임까지 대기
+        }
+
+        // 애니메이션이 완료될 때까지 대기
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+
+        gameObject.SetActive(false); // 오브젝트 비활성화
+    }
+    private void UpdateHealthBar()
+    {
+        float healthPer = bossHp / fullHealth;
+        if(isHealthAnim)
+        {
+            currentFill = Mathf.Lerp(currentFill, healthPer, Time.deltaTime * 5);
+        }else
+        {
+            currentFill = healthPer;
+        }
+
+        fillHealthBar.fillAmount = currentFill;
+        healthText.text = $"{(int)bossHp} / {(int)fullHealth}";
+        healthText.enabled = isShowHpNum;
+    }
 }
