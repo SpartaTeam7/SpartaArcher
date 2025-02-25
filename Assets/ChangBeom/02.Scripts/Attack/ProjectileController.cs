@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-    [SerializeField] private bool isReady;
+    [SerializeField] private LayerMask levelCollisionLayer;
+
+    private bool isReady;
     private float currentDuration;
+
     private Rigidbody2D rb;
+
     private RangeWeaponHandler rangeWeaponHandler;
+    private ProjectileManager projectileManager;
 
     private void Awake()
     {
