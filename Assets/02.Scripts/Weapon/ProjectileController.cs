@@ -102,7 +102,7 @@ public class ProjectileController : MonoBehaviour
 
     public void Init(Quaternion rotation, RangeWeaponHandler weaponHandler)
     {
-        Debug.Log(" z " + rotation.eulerAngles.z);
+        // Debug.Log(" z " + rotation.eulerAngles.z);
         rangeWeaponHandler = weaponHandler;
         transform.rotation = rotation;
         currentDuration = 0;

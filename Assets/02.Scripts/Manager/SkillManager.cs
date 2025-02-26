@@ -104,7 +104,7 @@ public class SkillManager : MonoBehaviour
         rangeWeaponHandler.ReflectionCount = 2; //벽 튕김 횟수
         rangeWeaponHandler.IsPenetration = true; //적 관통
         rangeWeaponHandler.ExtraAttack = 1; //추가 공격 횟수
-        rangeWeaponHandler.NumberOfForwardProjectiles = 1; //전방 공격 화살 갯수
+        rangeWeaponHandler.NumberOfForwardProjectiles = 2; //전방 공격 화살 갯수
         rangeWeaponHandler.NumberOfDiagonalProjectiles = 0; //사선 공격 화살 갯수
         rangeWeaponHandler.NumberOfSideProjectiles = 0; //옆방향 공격 화살 갯수
         rangeWeaponHandler.NumberOfBackwardProjectiles = 0; //후방 공격 화살 갯수

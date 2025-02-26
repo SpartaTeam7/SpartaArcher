@@ -12,7 +12,9 @@ public class PlayerController : BaseController
     [SerializeField] private Transform attackPivot;
     private Transform playerTransform;
 
-    [SerializeField] private float fireDelay = 0.5f;
+    private RangeWeaponHandler rangeWeaponHandler;
+    private float fireDelay;
+    private int extraAttacks;
 
     private Vector3 direction;
     public Vector3 Direction
@@ -27,6 +29,9 @@ public class PlayerController : BaseController
         playerTransform = GetComponent<Transform>();
         monsterList = GameObject.FindGameObjectsWithTag("Enemy");
         attackPivot = transform.GetChild(1).transform.GetChild(0);
+        rangeWeaponHandler = GetComponentInChildren<RangeWeaponHandler>();
+        fireDelay = rangeWeaponHandler.Delay;
+        extraAttacks = rangeWeaponHandler.ExtraAttack;
     }
     private void Update()
     {
@@ -111,9 +116,20 @@ public class PlayerController : BaseController
 
     private IEnumerator OnFire()
     {
-        Attack();
+        Debug.Log("On Fire");
+        StartCoroutine(PerformExtraAttacks(extraAttacks));
         yield return new WaitForSeconds(fireDelay);
         isFire = false;
+    }
+
+    private IEnumerator PerformExtraAttacks(int extraAttacks)
+    {
+        for (int i = 0; i < extraAttacks + 1; i++)
+        {
+            Debug.Log("Attack");
+            Attack();
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 
     private void TargetAim()
