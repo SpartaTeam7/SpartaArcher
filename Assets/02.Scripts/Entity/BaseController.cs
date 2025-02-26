@@ -23,6 +23,7 @@ public class BaseController : MonoBehaviour
     protected StatHandler statHandler;
 
     [SerializeField] public WeaponHandler WeaponPrefab;
+    [SerializeField] private AnimationHandler ainmationHandler;
 
     protected bool isAttacking;
 
@@ -56,6 +57,8 @@ public class BaseController : MonoBehaviour
         {
             lookDirection = direction / statHandler.Speed;
         }
+
+        ainmationHandler.Move(direction);
     }
 
     public void ApplyKnockback(Transform other, float power, float duration)
