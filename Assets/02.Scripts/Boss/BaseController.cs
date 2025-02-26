@@ -23,9 +23,6 @@ public class BaseController : MonoBehaviour
     protected StatHandler statHandler;
 
     [SerializeField] public WeaponHandler WeaponPrefab;
-    protected WeaponHandler weaponHandler;
-
-    [SerializeField] private AnimationHandler ainmationHandler;
 
     protected bool isAttacking;
 
@@ -33,11 +30,6 @@ public class BaseController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         statHandler = GetComponent<StatHandler>();
-
-        if (WeaponPrefab != null)
-            weaponHandler = Instantiate(WeaponPrefab, weaponPivot);
-        else
-            weaponHandler = GetComponentInChildren<WeaponHandler>();
     }
 
     protected virtual void FixedUpdate()
@@ -48,10 +40,7 @@ public class BaseController : MonoBehaviour
             knockbackDuration -= Time.fixedDeltaTime;
         }
     }
-    protected virtual void HandleAction()
-    {
 
-    }
     private void Movment(Vector2 direction)
     {
         direction = direction * statHandler.Speed;
@@ -67,8 +56,6 @@ public class BaseController : MonoBehaviour
         {
             lookDirection = direction / statHandler.Speed;
         }
-
-        ainmationHandler.Move(direction);
     }
 
     public void ApplyKnockback(Transform other, float power, float duration)
