@@ -173,6 +173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelCollisionLayer:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 256
   fxOnDestory: 1
   reflectionCount: 0

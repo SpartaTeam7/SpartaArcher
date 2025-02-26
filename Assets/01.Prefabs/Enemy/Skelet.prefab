@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8638971563790229596}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 7644669410659387582}
   - component: {fileID: 1310967397859355414}
   - component: {fileID: 6724759621459441171}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e12fd9ba5e6dd0c44bd963b710f05eb4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -148,12 +148,13 @@ GameObject:
   - component: {fileID: 8594727427122394335}
   - component: {fileID: 8550146382914533466}
   - component: {fileID: 7560234090469720087}
-  - component: {fileID: -617598450877718915}
-  - component: {fileID: -3146409657666382525}
-  - component: {fileID: -1159581884450011964}
-  m_Layer: 7
+  - component: {fileID: -6351333177070042289}
+  - component: {fileID: 913071224652615527}
+  - component: {fileID: -9051610815741686339}
+  - component: {fileID: 853847180331171665}
+  m_Layer: 0
   m_Name: Skelet
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,38 +248,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.62, y: 0.77}
   m_EdgeRadius: 0
---- !u!114 &-617598450877718915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6469881923063510295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a61fc43f1489d37468d795df038cf995, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterRenderer: {fileID: 1310967397859355414}
-  weaponPivot: {fileID: 8638971563790229596}
-  WeaponPrefab: {fileID: 0}
-  animationHandler: {fileID: 0}
-  followRange: 15
---- !u!114 &-3146409657666382525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6469881923063510295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56ded049835278c42bdc593b8dcc209f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  speed: 10
---- !u!114 &-1159581884450011964
+--- !u!114 &-6351333177070042289
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,3 +267,49 @@ MonoBehaviour:
   evasionChance: 0
   isFlying: 0
   extraLife: 0
+--- !u!114 &913071224652615527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6469881923063510295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e60b78ef73d9b43a6da2ea47c92d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-9051610815741686339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6469881923063510295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ded049835278c42bdc593b8dcc209f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  speed: 10
+--- !u!114 &853847180331171665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6469881923063510295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61fc43f1489d37468d795df038cf995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterRenderer: {fileID: 0}
+  weaponPivot: {fileID: 0}
+  WeaponPrefab: {fileID: 0}
+  ainmationHandler: {fileID: 0}
+  followRange: 15
+  attackType: 1
+  projectilePrefab: {fileID: 1383161914096036626, guid: 9a1c8ac430c650e43a660e1ebed6c919, type: 3}
+  projectileSpeed: 10
