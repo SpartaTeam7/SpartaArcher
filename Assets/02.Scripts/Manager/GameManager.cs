@@ -6,14 +6,22 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public int currentLevel;
+
     private void Awake()
     {
         Instance = this;
-    }
 
+        Init();
+    }
     private void Start()
     {
         
+    }
+
+    public void Init()
+    {
+        currentLevel = 1;
     }
 
     public void StartGame()

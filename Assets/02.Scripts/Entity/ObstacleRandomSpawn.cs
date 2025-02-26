@@ -15,13 +15,14 @@ public class ObstacleRandomSpawn : MonoBehaviour
 
     public float minPadding = 2f;
 
-    void Start()
+    private void Start()
     {
         SpawnObstacles();
     }
 
-    void SpawnObstacles()
+    public void SpawnObstacles()
     {
+        Vector2 mapPosition = transform.position;
         obstaclePositions = new List<Vector2>();
         int obstacleCount = Random.Range(minObstacles, maxObstacles + 1); //랜덤한 생성 개수
 
@@ -37,6 +38,8 @@ public class ObstacleRandomSpawn : MonoBehaviour
                     Random.Range(spawnAreaMin.y, spawnAreaMax.y)
                 );
 
+                spawnPosition += mapPosition;
+
                 positionCheck = true;
 
                 foreach (Vector2 pos in obstaclePositions)
@@ -50,7 +53,6 @@ public class ObstacleRandomSpawn : MonoBehaviour
             }
 
             int obstacleIndex = Random.Range(0, obstaclePrefabs.Length);
-
             Instantiate(obstaclePrefabs[obstacleIndex], spawnPosition, Quaternion.identity);
             obstaclePositions.Add(spawnPosition);
         }
