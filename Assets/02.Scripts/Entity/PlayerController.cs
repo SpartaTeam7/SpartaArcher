@@ -96,12 +96,7 @@ public class PlayerController : BaseController
                         target = hit.collider.gameObject;
                     }
                 }
-                else
-                {
-                    minDistance = 0;
-                    target = null;
-                }
-            }       
+            }
 
             if (target != null) {
                 Vector3 targetDirection = target.transform.position - attackPivot.position;
