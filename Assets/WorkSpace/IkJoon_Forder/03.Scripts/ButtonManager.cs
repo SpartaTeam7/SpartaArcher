@@ -8,6 +8,7 @@ using UnityEditor;
 
 public class ButtonManager : MonoBehaviour
 {
+    public GameObject slotMachine;
     public string sceneName;
     
     public void OnClickStartBtn()
@@ -21,5 +22,9 @@ public class ButtonManager : MonoBehaviour
         #else
             Application.Quit();
         #endif
+    }
+    public void OnClickUpgradeBtn()
+    {
+        slotMachine.SetActive(false);
     }
 }
