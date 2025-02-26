@@ -18,6 +18,8 @@ public class ProjectileController : MonoBehaviour
 
     [SerializeField] private int reflectionCount;
 
+    ProjectileManager projectileManager;
+
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -99,8 +101,9 @@ public class ProjectileController : MonoBehaviour
     }
 
 
-    public void Init(Quaternion rotation, RangeWeaponHandler weaponHandler)
+    public void Init(Quaternion rotation, RangeWeaponHandler weaponHandler, ProjectileManager projectileManager)
     {
+        this.projectileManager = projectileManager;
         rangeWeaponHandler = weaponHandler;
         transform.rotation = rotation;
         currentDuration = 0;
@@ -112,6 +115,11 @@ public class ProjectileController : MonoBehaviour
 
     private void DestroyProjectile(Vector3 position, bool createFx)
     {
+        if (createFx)
+        {
+            projectileManager.CreateImpactParticlesAtPosition(position, rangeWeaponHandler);
+        }
+
         Destroy(this.gameObject);
     }
 }
