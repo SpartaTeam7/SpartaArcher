@@ -231,11 +231,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2607462922104946536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0d342a59c1d71048b0b4ccccdc6e370, type: 3}
+  m_Script: {fileID: 11500000, guid: 56ded049835278c42bdc593b8dcc209f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 155
   speed: 10
-  health: 200
 --- !u!1 &4462439637971689731
 GameObject:
   m_ObjectHideFlags: 0
