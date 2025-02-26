@@ -9,11 +9,11 @@ public class BaseController : MonoBehaviour
     [SerializeField] private SpriteRenderer characterRenderer;
     [SerializeField] private Transform weaponPivot;
 
-    //  ÇÃ·¹ÀÌ¾îÀÇ ÁøÇà ¹æÇâ
+    //  ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get => movementDirection; }
 
-    //  ÇÃ·¹ÀÌ¾î°¡ ¹Ù¶óº¸°í ÀÖ´Â ¹æÇâ
+    //  ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½Ù¶óº¸°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
     protected Vector2 lookDirection = Vector2.down;
     public Vector2 LookDirection { get => lookDirection; }
 
