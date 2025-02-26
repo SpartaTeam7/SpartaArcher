@@ -117,6 +117,10 @@ GameObject:
   - component: {fileID: 51700233383991290}
   - component: {fileID: 8151598090623378868}
   - component: {fileID: 196223607631884414}
+  - component: {fileID: 563305919611638913}
+  - component: {fileID: -5480811940758936709}
+  - component: {fileID: 23531890086594731}
+  - component: {fileID: -2514902339279989038}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -213,6 +217,68 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &563305919611638913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691821267949428179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6349860a1a67b43a685bc882fdc1da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0
+  healthText: {fileID: 0}
+  healthBoost: 0
+  invincibleTime: 0
+  evasionChance: 0
+  isFlying: 0
+  extraLife: 0
+--- !u!114 &-5480811940758936709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691821267949428179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e60b78ef73d9b43a6da2ea47c92d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &23531890086594731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691821267949428179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ded049835278c42bdc593b8dcc209f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  speed: 10
+--- !u!114 &-2514902339279989038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691821267949428179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61fc43f1489d37468d795df038cf995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterRenderer: {fileID: 0}
+  weaponPivot: {fileID: 0}
+  WeaponPrefab: {fileID: 0}
+  ainmationHandler: {fileID: 0}
+  followRange: 15
 --- !u!1 &4351110526181128315
 GameObject:
   m_ObjectHideFlags: 0
