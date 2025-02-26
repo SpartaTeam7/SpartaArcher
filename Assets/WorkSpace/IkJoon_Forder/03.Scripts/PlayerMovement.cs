@@ -34,21 +34,9 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 moveDirection = new Vector2(moveX, moveY).normalized;
         transform.position += (Vector3)moveDirection * moveSpeed * Time.deltaTime;
-        
         if(Input.GetMouseButtonDown(0))
         {
             _boss.bossHp -= 10f;
-        }
-    }
-    public void TakeDamage(float damage)
-    {
-        playerHp -= damage;
-        Debug.Log("플레이어가 " + damage + "의 피해를 입음! 현재 체력: " + playerHp);
-        
-        if (playerHp <= 0)
-        {
-            Debug.Log("플레이어가 사망했습니다!");
-            // 사망 처리 로직 추가 가능
         }
     }
 }
