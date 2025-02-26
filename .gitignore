@@ -76,3 +76,10 @@ crashlytics-build.properties
 .vscode/launch.json
 .vscode/settings.json
 #DS_Store
+ProjectSettings/EditorBuildSettings.asset
+Assets/ChangBeom.meta
+Assets/ChangBeom/02.Scripts.meta
+Assets/ChangBeom/02.Scripts/JoonYoung.meta
+Assets/ChangBeom/02.Scripts/JoonYoung/EnemyBase.cs.meta
+Assets/ChangBeom/02.Scripts/JoonYoung/EnemyMeleeFSM.cs.meta
+Assets/WorkSpace/YJ/SkillTestScene.unity
