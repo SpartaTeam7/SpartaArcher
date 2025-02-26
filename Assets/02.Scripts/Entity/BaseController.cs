@@ -48,6 +48,7 @@ public class BaseController : MonoBehaviour
         {
             knockbackDuration -= Time.fixedDeltaTime;
         }
+        HandleAction();
     }
     protected virtual void HandleAction()
     {
