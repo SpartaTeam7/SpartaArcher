@@ -5,9 +5,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : BaseController
 {
+    private EnemyManager enemyManager;
+
     [SerializeField] private SpriteRenderer chracterRenderer;
-    [SerializeField] private GameObject[] monsterList;
-    [SerializeField] private GameObject target;
+    [SerializeField] public GameObject target;
     [SerializeField] private GameObject aim;
     [SerializeField] private Transform attackPivot;
     private Transform playerTransform;
@@ -21,12 +22,12 @@ public class PlayerController : BaseController
     }
 
     private bool isFire = false;
-
+    
     private void Start()
     {
         playerTransform = GetComponent<Transform>();
-        monsterList = GameObject.FindGameObjectsWithTag("Enemy");
         attackPivot = transform.GetChild(1).transform.GetChild(0);
+        enemyManager = EnemyManager.Instance;
     }
     private void Update()
     {
@@ -35,7 +36,7 @@ public class PlayerController : BaseController
         {
             OnLook();
 
-            if (!isFire && monsterList.Length > 0)
+            if (!isFire && target != null)
             {
                 isFire = true;
                 StartCoroutine(OnFire());
@@ -68,7 +69,7 @@ public class PlayerController : BaseController
     void OnLook()
     {
         //  스테이지에 몬스터가 있으면 가장 가까운 적을 바라보고, 없으면 움직였던 방향을 바라봄
-        if (monsterList.Length <= 0)
+        if (enemyManager.monsterList.Count <= 0)
         {
             float angle = Mathf.Atan2(lookDirection.x, -lookDirection.y) * Mathf.Rad2Deg - 90f;
             attackPivot.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
@@ -77,9 +78,9 @@ public class PlayerController : BaseController
         {
             float minDistance = 999999f;
 
-            int layerMask = LayerMask.GetMask("Enemy") | LayerMask.GetMask("Level");
+            int layerMask = LayerMask.GetMask("Enemy") | LayerMask.GetMask("Obstacle");
 
-            foreach (var monster in monsterList)
+            foreach (var monster in enemyManager.monsterList)
             {
                 direction = monster.transform.position - playerTransform.position;
                 float distance = Vector3.Distance(monster.transform.position, playerTransform.position);
@@ -95,20 +96,27 @@ public class PlayerController : BaseController
                         target = hit.collider.gameObject;
                     }
                 }
-            }
+                else
+                {
+                    minDistance = 0;
+                    target = null;
+                }
+            }       
 
-            Vector3 targetDirection = target.transform.position - attackPivot.position;
-            lookDirection = targetDirection;
-            float angle = Mathf.Atan2(targetDirection.x, -targetDirection.y) * Mathf.Rad2Deg - 90f;
-            attackPivot.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            if (target != null) {
+                Vector3 targetDirection = target.transform.position - attackPivot.position;
+                lookDirection = targetDirection;
+                float angle = Mathf.Atan2(targetDirection.x, -targetDirection.y) * Mathf.Rad2Deg - 90f;
+                attackPivot.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
-            if (attackPivot.transform.right.x > 0)
-            {
-                chracterRenderer.flipX = true;
-            }
-            else
-            {
-                chracterRenderer.flipX = false;
+                if (attackPivot.transform.right.x > 0)
+                {
+                    chracterRenderer.flipX = true;
+                }
+                else
+                {
+                    chracterRenderer.flipX = false;
+                }
             }
         }
     }
@@ -122,7 +130,7 @@ public class PlayerController : BaseController
 
     private void TargetAim()
     {
-        if (monsterList.Length <= 0)
+        if (target==null)
         {
             aim.SetActive(false);
         }

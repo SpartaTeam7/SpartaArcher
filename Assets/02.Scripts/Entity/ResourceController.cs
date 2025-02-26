@@ -134,6 +134,9 @@ public class ResourceController : MonoBehaviour
             extraLife--;
             CurrentHealth = MaxHealth;
         }
-        else { baseController.Death(); }
+        else
+        {
+            baseController.Death();
+        }
     }
 }

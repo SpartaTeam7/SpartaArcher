@@ -11,9 +11,12 @@ GameObject:
   - component: {fileID: 2638289174268159503}
   - component: {fileID: 3948350740666068058}
   - component: {fileID: 2192176852478542759}
-  m_Layer: 0
+  - component: {fileID: 9215930535907417406}
+  - component: {fileID: 5938647550072036192}
+  - component: {fileID: -6338357255854425486}
+  m_Layer: 7
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,6 +110,56 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.62, y: 0.77}
   m_EdgeRadius: 0
+--- !u!114 &9215930535907417406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722294780844624963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61fc43f1489d37468d795df038cf995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterRenderer: {fileID: 7674939338731573913}
+  weaponPivot: {fileID: 4510557487136525140}
+  WeaponPrefab: {fileID: 0}
+  animationHandler: {fileID: 0}
+  followRange: 15
+--- !u!114 &5938647550072036192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722294780844624963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ded049835278c42bdc593b8dcc209f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  speed: 10
+--- !u!114 &-6338357255854425486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722294780844624963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6349860a1a67b43a685bc882fdc1da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0
+  healthText: {fileID: 0}
+  healthBoost: 0
+  invincibleTime: 0
+  evasionChance: 0
+  isFlying: 0
+  extraLife: 0
 --- !u!1 &7935496618691742694
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4510557487136525140}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +202,7 @@ GameObject:
   - component: {fileID: 4087265527853892252}
   - component: {fileID: 7674939338731573913}
   - component: {fileID: 4760767891966227792}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +264,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 4518187702968751635, guid: e0242c0d8534874479e288686d5ae675, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

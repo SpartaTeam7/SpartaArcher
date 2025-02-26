@@ -25,7 +25,7 @@ public class BaseController : MonoBehaviour
     [SerializeField] public WeaponHandler WeaponPrefab;
     protected WeaponHandler weaponHandler;
 
-    [SerializeField] private AnimationHandler ainmationHandler;
+    [SerializeField] private AnimationHandler animationHandler;
 
     protected bool isAttacking;
 
@@ -43,6 +43,7 @@ public class BaseController : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         Movment(movementDirection);
+
         if (knockbackDuration > 0.0f)
         {
             knockbackDuration -= Time.fixedDeltaTime;
@@ -68,7 +69,10 @@ public class BaseController : MonoBehaviour
             lookDirection = direction / statHandler.Speed;
         }
 
-        ainmationHandler.Move(direction);
+        if(animationHandler != null)
+        {
+            animationHandler.Move(direction);
+        }
     }
 
     public void ApplyKnockback(Transform other, float power, float duration)

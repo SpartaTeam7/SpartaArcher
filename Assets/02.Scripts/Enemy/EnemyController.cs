@@ -7,17 +7,25 @@ public class EnemyController : BaseController
     // 적을 관리하는 매니저
     private EnemyManager enemyManager;
 
+    private PlayerController playerController;
+
     // 적이 추적할 타겟 (플레이어 등)
     private Transform target;
 
     // 적이 타겟을 추적하는 범위 (거리)
     [SerializeField] private float followRange = 15f;
 
-    // 초기화 메서드: EnemyManager와 타겟을 설정
-    public void Init(EnemyManager enemyManager, Transform target)
+    public void Start()
     {
-        this.enemyManager = enemyManager; // 적 매니저 초기화
-        this.target = target; // 타겟 초기화
+        Init();
+    }
+
+    // 초기화 메서드: EnemyManager와 타겟을 설정
+    public void Init()
+    {
+        enemyManager = EnemyManager.Instance;
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        target = GameObject.Find("Player").transform;
     }
 
     // 타겟과의 거리를 계산하는 메서드
@@ -85,7 +93,8 @@ public class EnemyController : BaseController
     // 적이 사망했을 때 호출되는 메서드
     public override void Death()
     {
+        enemyManager.monsterList.Remove(this.gameObject);
         base.Death(); // 부모 클래스의 Death() 호출
-        enemyManager.RemoveEnemyOnDeath(this); // 사망한 적을 적 매니저에서 제거
+        playerController.target = null;
     }
 }

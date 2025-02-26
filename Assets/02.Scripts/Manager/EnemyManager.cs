@@ -5,42 +5,80 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    private Coroutine waveRoutine;
+    public static EnemyManager Instance;
 
     [SerializeField]
     private List<GameObject> enemyPrefabs; // 생성할 적 프리팹 리스트
+    public List<GameObject> monsterList; // 현재 Level에 존재하는 몬스터 목록
 
-    [SerializeField]
-    private List<Rect> spawnAreas; // 적을 생성할 영역 리스트
+    //  몬스터가 생성될 수
+    public int minMonsters = 3;
+    public int maxMonsters = 5;
 
-    [SerializeField]
-    private Color gizmoColor = new Color(1, 0, 0, 0.3f); // 기즈모 색상
+    //  몬스터 생성 위치
+    public Vector2 spawnAreaMin = new Vector2(0f, 0f);
+    public Vector2 spawnAreaMax = new Vector2(8f, 7f);
 
-    private List<EnemyController> activeEnemies = new List<EnemyController>(); // 현재 활성화된 적들
+    private List<Vector2> monsterPositions;
 
-    private bool enemySpawnComplite;
+    public float minPadding = 2f;
 
-    [SerializeField] private float timeBetweenSpawns = 0.2f;
-    [SerializeField] private float timeBetweenWaves = 1f;
+    private GameManager gameManager;
 
-    GameManager gameManager;
-    //  playercontroller에 있는 monsterList를 여기로 옮겨야함
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
 
     public void StartStage()
     {
-        //  스테이지가 시작되고 랜덤한 위치에 몬스터가 스폰됨
+        SpawnMonster();
     }
 
     public void SpawnMonster()
     {
-        //  랜덤한 위치에 스테이지에 맞는 수의 몬스터를 스폰
-        //  스폰된 몬스터는 monsterList에 저장
+        Vector2 mapPosition = new Vector2(gameManager.currentLevel * 25f - 25f, 0);
+        monsterPositions = new List<Vector2>();
+        int monsterCount = Random.Range(minMonsters, maxMonsters + 1);
+
+        for (int i = 0; i < monsterCount; i++)
+        {
+            Vector2 spawnPosition = Vector2.zero;
+            bool positionCheck = false;
+
+            while (!positionCheck)
+            {
+                spawnPosition = new Vector2(
+                    Random.Range(spawnAreaMin.x, spawnAreaMax.x),
+                    Random.Range(spawnAreaMin.y, spawnAreaMax.y)
+                );
+
+                spawnPosition += mapPosition;
+
+                positionCheck = true;
+
+                foreach (Vector2 pos in monsterPositions)
+                {
+                    if (Vector2.Distance(spawnPosition, pos) < minPadding)
+                    {
+                        positionCheck = false;
+                        break;
+                    }
+                }
+            }
+            int monsterIndex = Random.Range(0, enemyPrefabs.Count);
+            Instantiate(enemyPrefabs[monsterIndex], spawnPosition, Quaternion.identity);
+            monsterPositions.Add(spawnPosition);
+        }
     }
-    public void RemoveEnemyOnDeath(EnemyController enemy)
+
+    public void RemoveEnemyOnDeath(GameObject enemy)
     {
-        activeEnemies.Remove(enemy);
-        //모든 적 처치시 다음 층으로 이동 가능
+        monsterList.Remove(enemy);
     }
-
-
 }

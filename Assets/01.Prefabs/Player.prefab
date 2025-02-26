@@ -5171,9 +5171,8 @@ MonoBehaviour:
   characterRenderer: {fileID: 390384207317052586}
   weaponPivot: {fileID: 406059785326111505}
   WeaponPrefab: {fileID: 1585186591704071135}
-  ainmationHandler: {fileID: 1618179249211832428}
+  animationHandler: {fileID: 1618179249211832428}
   chracterRenderer: {fileID: 390384207317052586}
-  monsterList: []
   target: {fileID: 0}
   aim: {fileID: 6053306359805574858}
   attackPivot: {fileID: 4753430537380863855}
@@ -5249,7 +5248,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 406059785326111505}
@@ -5358,7 +5357,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 60
   m_Sprite: {fileID: 21300000, guid: 359eca989761c0041a9a3394fc628a28, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
