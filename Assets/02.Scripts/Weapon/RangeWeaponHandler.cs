@@ -83,5 +83,7 @@ public class RangeWeaponHandler : WeaponHandler
             projectileSpawnPositionIndex,
             rotate
         );
+
+        weaponPivot.rotation *= Quaternion.Euler(0, 0, -angle);
     }
 }

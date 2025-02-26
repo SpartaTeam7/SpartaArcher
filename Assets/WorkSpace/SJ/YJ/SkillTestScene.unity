@@ -186,8 +186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 115076840}
-  weaponPivot: {fileID: 519131883}
+  weaponPivot: {fileID: 0}
   WeaponPrefab: {fileID: 688408580}
+  ainmationHandler: {fileID: 0}
   chracterRenderer: {fileID: 115076840}
   monsterList: []
   target: {fileID: 0}
@@ -6662,7 +6663,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 59148561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &519131882
+--- !u!1 &515805615
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6670,7 +6671,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 519131883}
+  - component: {fileID: 515805616}
   m_Layer: 0
   m_Name: WeaponPivot
   m_TagString: Untagged
@@ -6678,13 +6679,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &519131883
+--- !u!4 &515805616
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519131882}
+  m_GameObject: {fileID: 515805615}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -6737,8 +6738,8 @@ MonoBehaviour:
   isOnKnockback: 0
   knockbackPower: 0.1
   knockbackTime: 0.5
-  projectileSpawnPosition: {fileID: 1599663439}
-  weaponPivot: {fileID: 519131883}
+  projectileSpawnPosition: {fileID: 59148561}
+  weaponPivot: {fileID: 515805616}
   bulletIndex: 0
   bulletSize: 0.4
   duration: 10
@@ -6762,7 +6763,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 519131883}
+  - {fileID: 515805616}
   m_Father: {fileID: 59148561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &821374354 stripped
@@ -6977,6 +6978,7 @@ MonoBehaviour:
   characterRenderer: {fileID: 906923870}
   weaponPivot: {fileID: 906923869}
   WeaponPrefab: {fileID: 7328970383238266485, guid: 495e27fe198b1324dabd321ba11f3bae, type: 3}
+  ainmationHandler: {fileID: 0}
 --- !u!212 &919807725 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 5640816595147194206, guid: 1a7284ec868c686459e16bfd95639683, type: 3}
@@ -7062,6 +7064,7 @@ MonoBehaviour:
   characterRenderer: {fileID: 919807725}
   weaponPivot: {fileID: 821374354}
   WeaponPrefab: {fileID: 7328970383238266485, guid: 495e27fe198b1324dabd321ba11f3bae, type: 3}
+  ainmationHandler: {fileID: 0}
 --- !u!114 &1295923829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7111,7 +7114,7 @@ Transform:
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 519131883}
+  m_Father: {fileID: 515805616}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1742380787 stripped
 Transform:
@@ -7174,6 +7177,7 @@ MonoBehaviour:
   characterRenderer: {fileID: 1217464478}
   weaponPivot: {fileID: 1742380787}
   WeaponPrefab: {fileID: 7328970383238266485, guid: 495e27fe198b1324dabd321ba11f3bae, type: 3}
+  ainmationHandler: {fileID: 0}
 --- !u!114 &1958786737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7290,6 +7294,7 @@ MonoBehaviour:
   characterRenderer: {fileID: 1426744651}
   weaponPivot: {fileID: 970518919}
   WeaponPrefab: {fileID: 7328970383238266485, guid: 495e27fe198b1324dabd321ba11f3bae, type: 3}
+  ainmationHandler: {fileID: 0}
 --- !u!114 &2066748634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7325,6 +7330,7 @@ MonoBehaviour:
   characterRenderer: {fileID: 1268053323}
   weaponPivot: {fileID: 270248648}
   WeaponPrefab: {fileID: 7328970383238266485, guid: 495e27fe198b1324dabd321ba11f3bae, type: 3}
+  ainmationHandler: {fileID: 0}
 --- !u!114 &2095730651
 MonoBehaviour:
   m_ObjectHideFlags: 0

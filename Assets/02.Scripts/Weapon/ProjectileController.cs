@@ -57,20 +57,19 @@ public class ProjectileController : MonoBehaviour
             }
             else
             {
-                // 🌟 CircleCast를 사용하여 작은 입사각에서도 충돌 감지
-                RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.2f, direction, 1f, levelCollisionLayer);
+                RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.2f, direction, 0.5f, levelCollisionLayer);
 
                 if (hit.collider != null)
                 {
-                    Vector2 normal = hit.normal; // 충돌한 벽의 법선 벡터
+                    Vector2 normal = hit.normal;
                     Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
                     if (rb != null)
                     {
                         Vector2 newVelocity = Vector2.Reflect(rb.velocity, normal);
                         rb.velocity = newVelocity;
-                        direction = newVelocity.normalized; // 이동 방향 업데이트
-                        transform.right = direction; // 탄환 회전 적용
+                        direction = newVelocity.normalized;
+                        transform.right = direction;
                     }
                 }
 
@@ -103,6 +102,7 @@ public class ProjectileController : MonoBehaviour
 
     public void Init(Quaternion rotation, RangeWeaponHandler weaponHandler)
     {
+        Debug.Log(" z " + rotation.eulerAngles.z);
         rangeWeaponHandler = weaponHandler;
         transform.rotation = rotation;
         currentDuration = 0;

@@ -101,11 +101,11 @@ public class SkillManager : MonoBehaviour
         rangeWeaponHandler.CriticalChance = 0; //치명타율(최대 100)
         rangeWeaponHandler.CriticalDamage = 1.5f; //치명타 데미지
         // 근처 적 튕김 - 미구현
-        rangeWeaponHandler.ReflectionCount = 0; //벽 튕김 횟수
-        rangeWeaponHandler.IsPenetration = false; //적 관통
-        rangeWeaponHandler.ExtraAttack = 0; //추가 공격 횟수
-        rangeWeaponHandler.NumberOfForwardProjectiles = 0; //전방 공격 화살 갯수
-        rangeWeaponHandler.NumberOfDiagonalProjectiles = 1; //사선 공격 화살 갯수
+        rangeWeaponHandler.ReflectionCount = 2; //벽 튕김 횟수
+        rangeWeaponHandler.IsPenetration = true; //적 관통
+        rangeWeaponHandler.ExtraAttack = 1; //추가 공격 횟수
+        rangeWeaponHandler.NumberOfForwardProjectiles = 1; //전방 공격 화살 갯수
+        rangeWeaponHandler.NumberOfDiagonalProjectiles = 0; //사선 공격 화살 갯수
         rangeWeaponHandler.NumberOfSideProjectiles = 0; //옆방향 공격 화살 갯수
         rangeWeaponHandler.NumberOfBackwardProjectiles = 0; //후방 공격 화살 갯수
         statHandler.Health = 100; //최대 체력
