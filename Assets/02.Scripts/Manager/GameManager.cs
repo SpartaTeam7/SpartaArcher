@@ -8,11 +8,15 @@ public class GameManager : MonoBehaviour
 
     public int currentLevel;
 
+    private EnemyManager enemyManager;
+    
     private void Awake()
     {
         Instance = this;
 
         Init();
+        enemyManager = GetComponentInChildren<EnemyManager>();
+
     }
     private void Start()
     {
