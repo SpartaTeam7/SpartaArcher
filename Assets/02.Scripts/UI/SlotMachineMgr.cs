@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,10 +22,26 @@ public class SlotMachineMgr : MonoBehaviour
     public List<int> StartList = new List<int>();
     public List<int> ResultIndexList = new List<int>();
     int ItemCnt = 3;
-    
+
+    public GameObject upgradeFrame;
+
+    public Text upgradeTxt;
+
     private Dictionary<int, int> slotFinalResults = new Dictionary<int, int>(); // 슬롯 결과 저장
 
-    void Start()
+    void OnEnable()
+    {
+        StartCoroutine(StartSlotWithDelay());
+        upgradeFrame.SetActive(false);
+    }
+
+    IEnumerator StartSlotWithDelay()
+    {
+        yield return new WaitForSeconds(1f); // 활성화 후 1초 대기
+        StartSlotMachine();
+    }
+
+    void StartSlotMachine()
     {
         InitializeStartList();
         AssignRandomImages();
@@ -124,6 +141,23 @@ public class SlotMachineMgr : MonoBehaviour
     void OnSlotButtonClick(int slotIndex, Sprite sprite)
     {
         Debug.Log($"슬롯 {slotIndex} 클릭! 선택된 이미지: {sprite.name}");
+        
+        string message = $"슬롯 {slotIndex} 클릭! 선택된 이미지: {sprite.name}";
+        upgradeTxt.text = message;
+
+        DisableOtherSlots(slotIndex);
+        upgradeFrame.SetActive(true);
+    }
+
+    void DisableOtherSlots(int selectedSlotIndex)
+    {
+        for (int i = 0; i < Slot.Length; i++)
+        {
+            if (i != selectedSlotIndex)
+            {
+                Slot[i].interactable = false;
+            }
+        }
     }
 
     void ShuffleList(List<int> list)
