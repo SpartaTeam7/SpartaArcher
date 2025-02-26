@@ -17,4 +17,17 @@ public class StatHandler : MonoBehaviour
         get => speed;
         set => speed = Mathf.Clamp(value, 0, 20);
     }
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+        if (Health <= 0)
+        {
+            Die();
+        }
+    }
+    private void Die()
+    {
+        Debug.Log(gameObject.tag + "Dead");
+    }
 }
+
