@@ -24,6 +24,7 @@ public class EnemyBase : MonoBehaviour
 
     protected GameObject parentRoom;
     protected Animator anim;
+    protected Rigidbody2D rb;
     protected LayerMask LayerMask;
 
     protected void Start()
@@ -31,7 +32,7 @@ public class EnemyBase : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         nvAgent = player.GetComponent<NavMeshAgent>();
-        //rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
         parentRoom = transform.parent.transform.parent.gameObject;
