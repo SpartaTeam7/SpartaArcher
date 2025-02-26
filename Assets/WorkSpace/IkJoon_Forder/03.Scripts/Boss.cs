@@ -14,6 +14,7 @@ public class Boss : MonoBehaviour
     public float bossHp;
     public bool isDead = false;
     private StatHandler _stHandler;
+    //private HealthSystem healthSystem;
     private Animator _animator;
     private Transform _playerTf;
     private StatHandler _playerStatHandler;
@@ -162,7 +163,7 @@ public class Boss : MonoBehaviour
         {
             if (_playerStatHandler != null)
             {
-                _playerStatHandler.Health -= 10;
+                _playerStatHandler.TakeDamage(10);
                 Debug.Log($"[Boss] Player hit! Remaining HP: {_playerStatHandler.Health}");
             }
             yield return new WaitForSeconds(0.45f);
