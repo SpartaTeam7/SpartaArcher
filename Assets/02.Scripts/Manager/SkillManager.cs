@@ -96,18 +96,18 @@ public class SkillManager : MonoBehaviour
         }
 
         //스킬 초기화
-        rangeWeaponHandler.Power = 10; //공격력
-        rangeWeaponHandler.Delay = 1; //공격 속도
+        rangeWeaponHandler.Power = 1; //공격력
+        rangeWeaponHandler.Delay = 1f; //공격 속도
         rangeWeaponHandler.CriticalChance = 0; //치명타율(최대 100)
         rangeWeaponHandler.CriticalDamage = 1.5f; //치명타 데미지
         // 근처 적 튕김 - 미구현
         rangeWeaponHandler.ReflectionCount = 2; //벽 튕김 횟수
         rangeWeaponHandler.IsPenetration = true; //적 관통
-        rangeWeaponHandler.ExtraAttack = 1; //추가 공격 횟수
-        rangeWeaponHandler.NumberOfForwardProjectiles = 2; //전방 공격 화살 갯수
-        rangeWeaponHandler.NumberOfDiagonalProjectiles = 0; //사선 공격 화살 갯수
-        rangeWeaponHandler.NumberOfSideProjectiles = 0; //옆방향 공격 화살 갯수
-        rangeWeaponHandler.NumberOfBackwardProjectiles = 0; //후방 공격 화살 갯수
+        rangeWeaponHandler.ExtraAttack = 0; //추가 공격 횟수
+        rangeWeaponHandler.NumberOfForwardProjectiles = 3; //전방 공격 화살 갯수
+        rangeWeaponHandler.NumberOfDiagonalProjectiles = 2; //사선 공격 화살 갯수
+        rangeWeaponHandler.NumberOfSideProjectiles = 2; //옆방향 공격 화살 갯수
+        rangeWeaponHandler.NumberOfBackwardProjectiles = 2; //후방 공격 화살 갯수
         statHandler.Health = 100; //최대 체력
         berserkerMode = false; //체력이 적으면 공격력 증가
         boomOnDeath = false; //적이 죽으면 터짐

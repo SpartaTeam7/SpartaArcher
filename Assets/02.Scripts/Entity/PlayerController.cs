@@ -30,11 +30,12 @@ public class PlayerController : BaseController
         monsterList = GameObject.FindGameObjectsWithTag("Enemy");
         attackPivot = transform.GetChild(1).transform.GetChild(0);
         rangeWeaponHandler = GetComponentInChildren<RangeWeaponHandler>();
-        fireDelay = rangeWeaponHandler.Delay;
-        extraAttacks = rangeWeaponHandler.ExtraAttack;
     }
     private void Update()
     {
+        fireDelay = rangeWeaponHandler.Delay;
+        extraAttacks = rangeWeaponHandler.ExtraAttack;
+
         if (movementDirection.magnitude < 0.7f)
         {
             OnLook();
@@ -116,7 +117,6 @@ public class PlayerController : BaseController
 
     private IEnumerator OnFire()
     {
-        Debug.Log("On Fire");
         StartCoroutine(PerformExtraAttacks(extraAttacks));
         yield return new WaitForSeconds(fireDelay);
         isFire = false;
@@ -126,7 +126,7 @@ public class PlayerController : BaseController
     {
         for (int i = 0; i < extraAttacks + 1; i++)
         {
-            Debug.Log("Attack");
+            Debug.Log("Attack " + i);
             Attack();
             yield return new WaitForSeconds(0.05f);
         }

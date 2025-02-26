@@ -72,9 +72,12 @@ public class RangeWeaponHandler : WeaponHandler
 
     private void CreateProjectile(Vector2 _lookDirection, float angle, int index)
     {
-        // Debug.Log(angle + " 이랑 " + index + " 어디로 : " + _lookDirection);
         float offset = (index % 2 == 0 ? -1f : 1f) * 0.2f * ((index + 1) / 2);
-        Vector3 indexOffset = new Vector3(0, offset, 0);
+        Vector3 indexOffset = weaponPivot.up * offset;
+        if (angle == 90 || angle == -90)
+        {
+            indexOffset = weaponPivot.right * offset;
+        }
         Vector3 projectileSpawnPositionIndex = projectileSpawnPosition.position + indexOffset;
         Quaternion rotate = weaponPivot.rotation *= Quaternion.Euler(0, 0, angle);
 
