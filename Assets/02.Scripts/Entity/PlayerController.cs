@@ -12,7 +12,9 @@ public class PlayerController : BaseController
     [SerializeField] private Transform attackPivot;
     private Transform playerTransform;
 
-    [SerializeField] private float fireDelay = 0.5f;
+    private RangeWeaponHandler rangeWeaponHandler;
+    private float fireDelay;
+    private int extraAttacks;
 
     private Vector3 direction;
     public Vector3 Direction
@@ -27,10 +29,13 @@ public class PlayerController : BaseController
         playerTransform = GetComponent<Transform>();
         monsterList = GameObject.FindGameObjectsWithTag("Enemy");
         attackPivot = transform.GetChild(1).transform.GetChild(0);
+        rangeWeaponHandler = GetComponentInChildren<RangeWeaponHandler>();
     }
     private void Update()
     {
-        //  멈춰있을 때만 적을 바라봄
+        fireDelay = rangeWeaponHandler.Delay;
+        extraAttacks = rangeWeaponHandler.ExtraAttack;
+
         if (movementDirection.magnitude < 0.7f)
         {
             OnLook();
@@ -57,17 +62,14 @@ public class PlayerController : BaseController
         chracterRenderer.flipX = isRight;
     }
 
-    //  Input System으로 키입력을 받아 플레이어를 움직이는 함수
     private void OnMove(InputValue value)
     {
         movementDirection = value.Get<Vector2>();
         movementDirection = movementDirection.normalized;
     }
 
-    //  Player가 가장 가까운 적을 바라보는 함수
     void OnLook()
     {
-        //  스테이지에 몬스터가 있으면 가장 가까운 적을 바라보고, 없으면 움직였던 방향을 바라봄
         if (monsterList.Length <= 0)
         {
             float angle = Mathf.Atan2(lookDirection.x, -lookDirection.y) * Mathf.Rad2Deg - 90f;
@@ -115,9 +117,19 @@ public class PlayerController : BaseController
 
     private IEnumerator OnFire()
     {
-        Attack();
+        StartCoroutine(PerformExtraAttacks(extraAttacks));
         yield return new WaitForSeconds(fireDelay);
         isFire = false;
+    }
+
+    private IEnumerator PerformExtraAttacks(int extraAttacks)
+    {
+        for (int i = 0; i < extraAttacks + 1; i++)
+        {
+            // Debug.Log("Attack " + i);
+            Attack();
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 
     private void TargetAim()
