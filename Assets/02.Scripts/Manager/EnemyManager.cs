@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -83,14 +84,14 @@ public class EnemyManager : MonoBehaviour
     public void RemoveEnemyOnDeath(GameObject enemy)
     {
         monsterList.Remove(enemy);
-        CheckStageClear();
     }
-    private void CheckStageClear()
+    public void CheckStageClear()
     {
         if (monsterList.Count == 0) 
         {
             // gameManager.StageClear();
             Debug.Log("good");
+            skillUpSlot.SetActive(true);
         }
     }
 }
