@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,22 +9,25 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager Instance;
 
     [SerializeField]
-    private List<GameObject> enemyPrefabs; // »ý¼ºÇÒ Àû ÇÁ¸®ÆÕ ¸®½ºÆ®
-    public List<GameObject> monsterList; // ÇöÀç Level¿¡ Á¸ÀçÇÏ´Â ¸ó½ºÅÍ ¸ñ·Ï
+    private List<GameObject> enemyPrefabs; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+    public List<GameObject> monsterList; // ï¿½ï¿½ï¿½ï¿½ Levelï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
-    //  ¸ó½ºÅÍ°¡ »ý¼ºµÉ ¼ö
+    //  ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     public int minMonsters = 3;
     public int maxMonsters = 5;
 
-    //  ¸ó½ºÅÍ »ý¼º À§Ä¡
+    public bool isClear = false;
+    public GameObject skillUpSlot;
+
+    //  ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
     public Vector2 spawnAreaMin = new Vector2(0f, 0f);
     public Vector2 spawnAreaMax = new Vector2(8f, 7f);
-
     private List<Vector2> monsterPositions;
 
     public float minPadding = 2f;
 
     private GameManager gameManager;
+
 
     private void Awake()
     {
@@ -37,7 +41,11 @@ public class EnemyManager : MonoBehaviour
 
     public void StartStage()
     {
-        SpawnMonster();
+        isClear = false;
+        if(gameManager.currentLevel < 4)
+        {
+            SpawnMonster();
+        }
     }
 
     public void SpawnMonster()
@@ -80,5 +88,14 @@ public class EnemyManager : MonoBehaviour
     public void RemoveEnemyOnDeath(GameObject enemy)
     {
         monsterList.Remove(enemy);
+    }
+    public void CheckStageClear()
+    {
+        if (monsterList.Count == 0) 
+        {
+            // gameManager.StageClear();
+            Debug.Log("good");
+            skillUpSlot.SetActive(true);
+        }
     }
 }

@@ -10,6 +10,7 @@ public class PotalController : MonoBehaviour
 
     private GameManager gameManager;
     private EnemyManager enemyManager;
+
     private void Start()
     {
         gameManager = GameManager.Instance;

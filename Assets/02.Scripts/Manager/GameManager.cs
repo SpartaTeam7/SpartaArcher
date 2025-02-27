@@ -18,10 +18,6 @@ public class GameManager : MonoBehaviour
         enemyManager = GetComponentInChildren<EnemyManager>();
 
     }
-    private void Start()
-    {
-        
-    }
 
     public void Init()
     {
@@ -30,16 +26,16 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        //  È£ÃâµÇ¸é °ÔÀÓÀÌ ½ÃÀÛµÊ
+        //  È£ï¿½ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½
     }
 
     public void EndGame()
     {
-        //  º¸½º¸¦ ÀâÀ¸¸é °ÔÀÓÀÌ Á¾·áµÇ°í ¸ÞÀÎÈ­¸éÀ¸·Î µ¹¾Æ°¨
+        //  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½
     }
 
     public void GameOver()
     {
-        //  ÇÃ·¹ÀÌ¾îÀÇ HP°¡ 0ÀÌµÇ¸é GameOver°ü·Ã UI¸¦ Ãâ·ÂÇÔ
+        //  ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ HPï¿½ï¿½ 0ï¿½ÌµÇ¸ï¿½ GameOverï¿½ï¿½ï¿½ï¿½ UIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 }
