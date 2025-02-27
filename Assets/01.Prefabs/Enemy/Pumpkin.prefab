@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: -6507612363034123544}
   - component: {fileID: -4255705634499955415}
   - component: {fileID: -170648603102164709}
+  - component: {fileID: -7882848785653315000}
   m_Layer: 7
   m_Name: Pumpkin
   m_TagString: Enemy
@@ -489,6 +490,21 @@ MonoBehaviour:
   currentHealth: 0
   healthText: {fileID: 0}
   firstHitted: 0
+--- !u!114 &-7882848785653315000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7191102411287599534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ea215189ffae446393f3e2f9e982466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillHealthBar: {fileID: 8572706864788070279}
+  isHealthAnim: 1
+  animTime: 8.47
 --- !u!1 &7319381837607194129
 GameObject:
   m_ObjectHideFlags: 0

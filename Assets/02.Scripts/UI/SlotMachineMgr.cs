@@ -191,7 +191,7 @@ void OnSlotButtonClick(int slotIndex, int spriteIndex)
     }
     else if(spriteName == "Dps")
     {
-        SkillManager.Instance.ChangeDelay(0.1f);
+        SkillManager.Instance.ChangeDelay(-0.2f);
         upgradeMessage = "공속 증가";
     }
 
