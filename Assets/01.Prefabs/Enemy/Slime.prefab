@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4087265527853892252}
-  - {fileID: 4510557487136525140}
+  - {fileID: 9031201090647712796}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &3948350740666068058
@@ -125,10 +125,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 7674939338731573913}
   weaponPivot: {fileID: 4510557487136525140}
-  WeaponPrefab: {fileID: 0}
+  WeaponPrefab: {fileID: 4733608236091953518}
   animationHandler: {fileID: 0}
+  attackPivot: {fileID: 9031201090647712796}
   followRange: 15
   attackRange: 5
+  fireDelay: 0.2
 --- !u!114 &5938647550072036192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ded049835278c42bdc593b8dcc209f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 10
   speed: 2
 --- !u!114 &-6338357255854425486
 MonoBehaviour:
@@ -155,7 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6349860a1a67b43a685bc882fdc1da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthChangeDelay: 0
+  healthChangeDelay: 0.5
+  currentHealth: 0
   healthBoost: 0
   invincibleTime: 0
   evasionChance: 0
@@ -173,6 +176,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e60b78ef73d9b43a6da2ea47c92d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1916301131378427999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9031201090647712796}
+  - component: {fileID: 4733608236091953518}
+  m_Layer: 7
+  m_Name: WeaponPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9031201090647712796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916301131378427999}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4510557487136525140}
+  m_Father: {fileID: 2638289174268159503}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4733608236091953518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916301131378427999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a30c90a39a55144bace1c6ae7426aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0.2
+  weaponSize: 1
+  power: 1
+  speed: 5
+  attackRange: 10
+  criticalChance: 30
+  criticalDamage: 2
+  extraAttack: 1
+  target:
+    serializedVersion: 2
+    m_Bits: 64
+  isOnKnockback: 0
+  knockbackPower: 0.1
+  knockbackTime: 0.5
+  projectileSpawnPosition: {fileID: 4510557487136525140}
+  weaponPivot: {fileID: 9031201090647712796}
+  bulletIndex: 1
+  bulletSize: 1
+  duration: 5
+  isPenetration: 0
+  reflectionCount: 0
+  numberOfForwardProjectiles: 1
+  numberOfDiagonalProjectiles: 0
+  numberOfSideProjectiles: 0
+  numberOfBackwardProjectiles: 0
+  projectileColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &7935496618691742694
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4510557487136525140}
   m_Layer: 7
-  m_Name: WeaponPivot
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,12 +271,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7935496618691742694}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2638289174268159503}
+  m_Father: {fileID: 9031201090647712796}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8977510610191387233
 GameObject:

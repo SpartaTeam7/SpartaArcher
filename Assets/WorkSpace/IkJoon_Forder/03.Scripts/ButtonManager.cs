@@ -10,11 +10,10 @@ public class ButtonManager : MonoBehaviour
 {
     public GameObject slotMachine;
     private PotalController _potal;
-    public string sceneName;
     
     public void OnClickStartBtn()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("Stage");
     }
     public void OnClickExitBtn()
     {

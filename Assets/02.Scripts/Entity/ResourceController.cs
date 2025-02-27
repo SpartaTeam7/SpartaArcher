@@ -11,7 +11,12 @@ public class ResourceController : MonoBehaviour
 
     private float timeSinceLastChange = float.MaxValue;
 
-    public float CurrentHealth { get; private set; }
+    [SerializeField] private float currentHealth;
+    public float CurrentHealth
+    {
+        get => currentHealth;
+        private set => currentHealth = value;
+    }
     public float MaxHealth => statHandler.Health;
 
     [SerializeField] private float healthBoost;
@@ -90,6 +95,7 @@ public class ResourceController : MonoBehaviour
         }
 
         timeSinceLastChange = 0f;
+
         if (change > 0)
         {
             CurrentHealth += healthBoost * change; // 이러면 몬스터도 힐 부스트 받긴 함 - 혹시 모르니 체크

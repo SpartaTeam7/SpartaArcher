@@ -25,7 +25,10 @@ public class CameraController : MonoBehaviour
 
     void FixedUpdate()
     {
-        LimitCameraArea();
+        if(playerTransform != null)
+        {
+            LimitCameraArea();
+        }
     }
 
     void LimitCameraArea()

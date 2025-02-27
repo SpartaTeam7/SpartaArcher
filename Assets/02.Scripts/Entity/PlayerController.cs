@@ -139,6 +139,6 @@ public class PlayerController : BaseController
     public override void Death()
     {
         base.Death();
-        // gameManager.GameOver();
+        GameManager.Instance.GameOver();
     }
 }

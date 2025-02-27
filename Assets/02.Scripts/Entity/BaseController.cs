@@ -49,6 +49,7 @@ public class BaseController : MonoBehaviour
         {
             knockbackDuration -= Time.fixedDeltaTime;
         }
+
         HandleAction();
     }
     protected virtual void HandleAction()
@@ -82,8 +83,10 @@ public class BaseController : MonoBehaviour
 
     protected virtual void Attack()
     {
-        if (lookDirection != Vector2.zero)
+        if (WeaponPrefab != null && lookDirection != Vector2.zero)
+        {
             WeaponPrefab.Attack();
+        }
     }
 
     public virtual void Death()

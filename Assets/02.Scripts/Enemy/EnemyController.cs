@@ -12,15 +12,31 @@ public class EnemyController : BaseController
     // 적이 추적할 타겟 (플레이어 등)
     private Transform target;
 
+    [SerializeField] private Transform attackPivot;
+
     // 적이 타겟을 추적하는 범위 (거리)
     [SerializeField] private float followRange = 15f;
 
     // 공격 범위
-    [SerializeField] private float attackRange = 10f; 
+    [SerializeField] private float attackRange = 10f;
+
+    [SerializeField] private float fireDelay = 1f;
+
+    private bool isFire = false;
 
     public void Start()
     {
         Init();
+    }
+
+    private void Update()
+    {
+        if (!isFire && isAttacking)
+        {
+            isFire = true;
+            StartCoroutine(OnFire());
+        }
+
     }
 
     // 초기화 메서드: EnemyManager와 타겟을 설정
@@ -54,6 +70,7 @@ public class EnemyController : BaseController
         if (target == null)
         {
             movementDirection = Vector2.zero;
+            return;
         }
 
         // 타겟과의 거리 및 방향 계산
@@ -85,6 +102,16 @@ public class EnemyController : BaseController
                 }
 
                 movementDirection = Vector2.zero; // 이동을 멈춤
+
+                if(WeaponPrefab != null)
+                {
+                    // 타겟 방향으로 무기 회전
+                    Vector3 targetDirection = target.transform.position - attackPivot.position;
+                    lookDirection = targetDirection;
+                    float angle = Mathf.Atan2(targetDirection.x, -targetDirection.y) * Mathf.Rad2Deg - 90f;
+                    attackPivot.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+                }
+
                 return; // 공격 준비가 되었으므로 반환
             }
 
@@ -93,6 +120,19 @@ public class EnemyController : BaseController
         }
 
     }
+
+    protected override void Attack()
+    {
+        base.Attack();
+    }
+
+    private IEnumerator OnFire()
+    {
+        Attack();
+        yield return new WaitForSeconds(fireDelay);
+        isFire = false;
+    }
+
 
     // 적이 사망했을 때 호출되는 메서드
     public override void Death()
