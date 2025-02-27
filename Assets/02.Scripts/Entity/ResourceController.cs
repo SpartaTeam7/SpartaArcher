@@ -30,7 +30,7 @@ public class ResourceController : MonoBehaviour //다 빼버림... 이럴거면 
 
     protected virtual void Start()
     {
-        CurrentHealth = statHandler.Health;
+        currentHealth = statHandler.Health;
     }
 
     private void Update()

@@ -5631,7 +5631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
-  gameOverUI: {fileID: 0}
+  gameOverUI: {fileID: 162854616}
 --- !u!4 &930123329
 Transform:
   m_ObjectHideFlags: 0
@@ -7452,7 +7452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3511847342311653716, guid: 106579abe972c454aad1d052914c4c9d, type: 3}
       propertyPath: health
-      value: 475
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5506047525517305589, guid: 106579abe972c454aad1d052914c4c9d, type: 3}
       propertyPath: healthChangeDelay
