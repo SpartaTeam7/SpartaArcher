@@ -11,10 +11,14 @@ public class ResourceController : MonoBehaviour //다 빼버림... 이럴거면 
     protected BaseController baseController;
     protected StatHandler statHandler;
 
-
     protected float timeSinceLastChange = float.MaxValue;
 
-    public float CurrentHealth { get; protected set; }
+    [SerializeField] private float currentHealth;
+    public float CurrentHealth
+    {
+        get => currentHealth;
+        private set => currentHealth = value;
+    }
     public float MaxHealth => statHandler.Health;
 
     protected virtual void Awake()

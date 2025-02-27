@@ -12,18 +12,34 @@ public class EnemyController : BaseController
     // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ (ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½)
     private Transform target;
 
-    // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Å¸ï¿½)
+    [SerializeField] private Transform attackPivot;
+
+    // ÀûÀÌ Å¸°ÙÀ» ÃßÀûÇÏ´Â ¹üÀ§ (°Å¸®)
     [SerializeField] private float followRange = 15f;
 
-    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    // °ø°Ý ¹üÀ§
     [SerializeField] private float attackRange = 10f;
+
+    [SerializeField] private float fireDelay = 1f;
+
+    private bool isFire = false;
 
     public void Start()
     {
         Init();
     }
 
-    // ï¿½Ê±ï¿½È­ ï¿½Þ¼ï¿½ï¿½ï¿½: EnemyManagerï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private void Update()
+    {
+        if (!isFire && isAttacking)
+        {
+            isFire = true;
+            StartCoroutine(OnFire());
+        }
+
+    }
+
+    // ÃÊ±âÈ­ ¸Þ¼­µå: EnemyManager¿Í Å¸°ÙÀ» ¼³Á¤
     public void Init()
     {
         enemyManager = EnemyManager.Instance;
@@ -31,17 +47,17 @@ public class EnemyController : BaseController
         target = GameObject.Find("Player").transform;
     }
 
-    // Å¸ï¿½Ù°ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+    // Å¸ï¿½Ù°ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿?ï¿½Þ¼ï¿½ï¿½ï¿½
     protected float DistanceToTarget()
     {
-        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½È¯
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿?ï¿½ï¿½È¯
         return Vector3.Distance(transform.position, target.position);
     }
 
-    // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+    // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿?ï¿½Þ¼ï¿½ï¿½ï¿½
     protected Vector2 DirectionToTarget()
     {
-        // Å¸ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+        // Å¸ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿?ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
         return (target.position - transform.position).normalized;
     }
 
@@ -54,9 +70,10 @@ public class EnemyController : BaseController
         if (target == null)
         {
             movementDirection = Vector2.zero;
+            return;
         }
 
-        // Å¸ï¿½Ù°ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+        // Å¸ï¿½Ù°ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿?
         float distance = DistanceToTarget();
         Vector2 direction = DirectionToTarget();
 
@@ -71,7 +88,7 @@ public class EnemyController : BaseController
             // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (distance <= attackRange)
             {
-                // Å¸ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ï¿½ï¿½ Ã¼Å©
+                // Å¸ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿?ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ï¿½ï¿½ Ã¼Å©
                 int layerMaskTarget = LayerMask.GetMask("Player");
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, attackRange,
                     layerMaskTarget);
@@ -84,8 +101,18 @@ public class EnemyController : BaseController
                     isAttacking = true;
                 }
 
-                movementDirection = Vector2.zero; // ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-                return; // ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½È¯
+                movementDirection = Vector2.zero; // ÀÌµ¿À» ¸ØÃã
+
+                if(WeaponPrefab != null)
+                {
+                    // Å¸°Ù ¹æÇâÀ¸·Î ¹«±â È¸Àü
+                    Vector3 targetDirection = target.transform.position - attackPivot.position;
+                    lookDirection = targetDirection;
+                    float angle = Mathf.Atan2(targetDirection.x, -targetDirection.y) * Mathf.Rad2Deg - 90f;
+                    attackPivot.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+                }
+
+                return; // °ø°Ý ÁØºñ°¡ µÇ¾úÀ¸¹Ç·Î ¹ÝÈ¯
             }
 
             // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ü¿ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
@@ -94,7 +121,18 @@ public class EnemyController : BaseController
 
     }
 
-    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+    protected override void Attack()
+    {
+        base.Attack();
+    }
+
+    private IEnumerator OnFire()
+    {
+        Attack();
+        yield return new WaitForSeconds(fireDelay);
+        isFire = false;
+    }
+
     public override void Death()
     {
         if (SkillManager.Instance.HealOnDeath)
@@ -106,5 +144,4 @@ public class EnemyController : BaseController
         playerController.target = null;
         enemyManager.CheckStageClear();
     }
-
 }

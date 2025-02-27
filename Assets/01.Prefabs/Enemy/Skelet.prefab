@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8638971563790229596}
+  - component: {fileID: 7968229874519952238}
   m_Layer: 7
   m_Name: WeaponPivot
   m_TagString: Untagged
@@ -28,8 +29,78 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7207095691253122931}
   m_Father: {fileID: 8594727427122394335}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7968229874519952238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990069739459803988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a30c90a39a55144bace1c6ae7426aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0.5
+  weaponSize: 1
+  power: 20
+  speed: 2
+  attackRange: 10
+  criticalChance: 30
+  criticalDamage: 2
+  extraAttack: 1
+  target:
+    serializedVersion: 2
+    m_Bits: 64
+  isOnKnockback: 1
+  knockbackPower: 2
+  knockbackTime: 0.5
+  projectileSpawnPosition: {fileID: 7207095691253122931}
+  weaponPivot: {fileID: 8638971563790229596}
+  bulletIndex: 2
+  bulletSize: 1
+  duration: 10
+  isPenetration: 0
+  reflectionCount: 0
+  numberOfForwardProjectiles: 1
+  numberOfDiagonalProjectiles: 0
+  numberOfSideProjectiles: 0
+  numberOfBackwardProjectiles: 0
+  projectileColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &3964627134426626948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7207095691253122931}
+  m_Layer: 7
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7207095691253122931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3964627134426626948}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8638971563790229596}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4784776590670750731
 GameObject:
@@ -150,8 +221,8 @@ GameObject:
   - component: {fileID: 7560234090469720087}
   - component: {fileID: -617598450877718915}
   - component: {fileID: -3146409657666382525}
+  - component: {fileID: -1159581884450011964}
   - component: {fileID: -7963523400420412135}
-  - component: {fileID: 2335961775713160280}
   m_Layer: 7
   m_Name: Skelet
   m_TagString: Enemy
@@ -262,10 +333,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 1310967397859355414}
   weaponPivot: {fileID: 8638971563790229596}
-  WeaponPrefab: {fileID: 0}
+  WeaponPrefab: {fileID: 7968229874519952238}
   animationHandler: {fileID: 0}
+  attackPivot: {fileID: 8638971563790229596}
   followRange: 10
-  attackRange: 5
+  attackRange: 7
+  fireDelay: 2
 --- !u!114 &-3146409657666382525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +353,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   speed: 2
+--- !u!114 &-1159581884450011964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6469881923063510295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6349860a1a67b43a685bc882fdc1da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0.5
+  currentHealth: 0
+  healthBoost: 0
+  invincibleTime: 0
+  evasionChance: 0
+  isFlying: 0
+  extraLife: 0
 --- !u!114 &-7963523400420412135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,18 +384,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e60b78ef73d9b43a6da2ea47c92d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2335961775713160280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6469881923063510295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac3e649e327cad4599f4d995d0dcfe5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthChangeDelay: 0
-  healthText: {fileID: 0}
-  firstHitted: 0

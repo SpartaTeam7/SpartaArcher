@@ -8,15 +8,13 @@ public class GameManager : MonoBehaviour
 
     public int currentLevel;
 
-    private EnemyManager enemyManager;
+    [SerializeField] GameObject gameOverUI;
     
     private void Awake()
     {
         Instance = this;
 
         Init();
-        enemyManager = GetComponentInChildren<EnemyManager>();
-
     }
 
     public void Init()
@@ -36,6 +34,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        //  �÷��̾��� HP�� 0�̵Ǹ� GameOver���� UI�� �����
+        Invoke("OnGameOverUI", 2f);
+    }
+
+    private void OnGameOverUI()
+    {
+        gameOverUI.SetActive(true);
     }
 }

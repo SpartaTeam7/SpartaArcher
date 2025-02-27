@@ -19,6 +19,8 @@ public class ProjectileManager : MonoBehaviour
         GameObject origin = projectilePrefabs[rangeWeaponHandler.BulletIndex];
         GameObject obj = Instantiate(origin, startPostiion, Quaternion.identity);
 
+        print(obj.name);
+
         ProjectileController projectileController = obj.GetComponent<ProjectileController>();
         projectileController.Init(rotation, rangeWeaponHandler,this);
     }
