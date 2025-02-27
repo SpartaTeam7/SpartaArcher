@@ -5036,9 +5036,9 @@ GameObject:
   - component: {fileID: 9118995454903861374}
   - component: {fileID: 7333764369917294892}
   - component: {fileID: 3511847342311653716}
-  - component: {fileID: 5506047525517305589}
   - component: {fileID: 1061824604137182008}
   - component: {fileID: 7311734546137277468}
+  - component: {fileID: -8920112155287369982}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -5179,7 +5179,6 @@ MonoBehaviour:
   target: {fileID: 0}
   aim: {fileID: 6053306359805574858}
   attackPivot: {fileID: 4753430537380863855}
-  fireDelay: 0.5
 --- !u!114 &3511847342311653716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5194,24 +5193,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   speed: 10
---- !u!114 &5506047525517305589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1836996836007131614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb6349860a1a67b43a685bc882fdc1da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthChangeDelay: 0
-  healthBoost: 0
-  invincibleTime: 0
-  evasionChance: 0
-  isFlying: 0
-  extraLife: 0
 --- !u!114 &1061824604137182008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5236,6 +5217,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1f9cedfa868e7443bb5a7bc59dfdb0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8920112155287369982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836996836007131614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3f7a3abbc31b842820cb7e256c4b9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0
+  isFlying: 0
+  healthBoost: 0
+  invincibleTime: 0
+  evasionChance: 0
+  extraLife: 0
 --- !u!1 &2677226874138888074
 GameObject:
   m_ObjectHideFlags: 0
