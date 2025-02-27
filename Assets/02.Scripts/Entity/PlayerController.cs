@@ -126,7 +126,7 @@ public class PlayerController : BaseController
     {
         for (int i = 0; i < extraAttacks + 1; i++)
         {
-            Debug.Log("Attack " + i);
+            // Debug.Log("Attack " + i);
             Attack();
             yield return new WaitForSeconds(0.05f);
         }
