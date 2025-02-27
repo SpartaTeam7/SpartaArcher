@@ -16,7 +16,6 @@ public class EnemyManager : MonoBehaviour
     public int minMonsters = 3;
     public int maxMonsters = 5;
 
-    public bool isClear = false;
     public GameObject skillUpSlot;
 
     //  ���� ���� ��ġ
@@ -42,29 +41,12 @@ public class EnemyManager : MonoBehaviour
         gameManager = GameManager.Instance;
     }
 
-    private void Update()
-    {
-        ClearCheck();
-    }
-
-    private void ClearCheck()
-    {
-        if(!isClear && monsterList.Count <= 0)
-        {
-            Clear();
-        }
-    }
-
-    private void Clear()
-    {
-        isClear = true;
-        skillUpgrade.SetActive(true);
-    }
-
     public void StartStage()
     {
-        isClear = false;
-        SpawnMonster();
+        if(gameManager.currentLevel < 4)
+        {
+            SpawnMonster();
+        }
     }
 
     public void SpawnMonster()
@@ -99,7 +81,7 @@ public class EnemyManager : MonoBehaviour
                 }
             }
             int monsterIndex = Random.Range(0, enemyPrefabs.Count);
-            monsterList.Add(Instantiate(enemyPrefabs[monsterIndex], spawnPosition, Quaternion.identity));
+            Instantiate(enemyPrefabs[monsterIndex], spawnPosition, Quaternion.identity);
             monsterPositions.Add(spawnPosition);
         }
     }

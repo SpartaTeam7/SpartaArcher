@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class EnemyController : BaseController
 {
-    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Å´ï¿½ï¿½ï¿½
+    // ÀûÀ» °ü¸®ÇÏ´Â ¸Å´ÏÀú
     private EnemyManager enemyManager;
 
     private PlayerController playerController;
 
-    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ (ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½)
+    // ÀûÀÌ ÃßÀûÇÒ Å¸°Ù (ÇÃ·¹ÀÌ¾î µî)
     private Transform target;
 
-    // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Å¸ï¿½)
+    // ÀûÀÌ Å¸°ÙÀ» ÃßÀûÇÏ´Â ¹üÀ§ (°Å¸®)
     [SerializeField] private float followRange = 15f;
 
-    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    // °ø°Ý ¹üÀ§
     [SerializeField] private float attackRange = 10f; 
 
     public void Start()
@@ -23,7 +23,7 @@ public class EnemyController : BaseController
         Init();
     }
 
-    // ï¿½Ê±ï¿½È­ ï¿½Þ¼ï¿½ï¿½ï¿½: EnemyManagerï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    // ÃÊ±âÈ­ ¸Þ¼­µå: EnemyManager¿Í Å¸°ÙÀ» ¼³Á¤
     public void Init()
     {
         enemyManager = EnemyManager.Instance;
@@ -31,74 +31,74 @@ public class EnemyController : BaseController
         target = GameObject.Find("Player").transform;
     }
 
-    // Å¸ï¿½Ù°ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+    // Å¸°Ù°úÀÇ °Å¸®¸¦ °è»êÇÏ´Â ¸Þ¼­µå
     protected float DistanceToTarget()
     {
-        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½È¯
+        // ÇöÀç Àû À§Ä¡¿Í Å¸°Ù À§Ä¡ °£ÀÇ °Å¸®¸¦ °è»êÇÏ¿© ¹ÝÈ¯
         return Vector3.Distance(transform.position, target.position);
     }
 
-    // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+    // Å¸°Ù ¹æÇâÀ» °è»êÇÏ´Â ¸Þ¼­µå
     protected Vector2 DirectionToTarget()
     {
-        // Å¸ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+        // Å¸°Ù°ú ÇöÀç À§Ä¡ÀÇ º¤ÅÍ Â÷ÀÌ¸¦ °è»êÇÏ¿© Á¤±ÔÈ­µÈ ¹æÇâÀ» ¹ÝÈ¯
         return (target.position - transform.position).normalized;
     }
 
-    // ï¿½àµ¿ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    // Çàµ¿À» Ã³¸®ÇÏ´Â ¸Þ¼­µå: ÀûÀÇ »óÅÂ¿¡ ¸ÂÃç ÀÌµ¿ ¹× °ø°ÝÀ» Á¦¾î
     protected override void HandleAction()
     {
-        base.HandleAction(); // ï¿½Î¸ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ HandleAction() È£ï¿½ï¿½
+        base.HandleAction(); // ºÎ¸ð Å¬·¡½ºÀÇ HandleAction() È£Ãâ
 
-        // ï¿½ï¿½ï¿½ï¿½ ï¿½Úµé·¯ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß°ï¿½ ï¿½ï¿½È¯
+        // ¹«±â ÇÚµé·¯³ª Å¸°ÙÀÌ ¾øÀ¸¸é ÀÌµ¿À» ¸ØÃß°í ¹ÝÈ¯
         if (target == null)
         {
             movementDirection = Vector2.zero;
         }
 
-        // Å¸ï¿½Ù°ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+        // Å¸°Ù°úÀÇ °Å¸® ¹× ¹æÇâ °è»ê
         float distance = DistanceToTarget();
         Vector2 direction = DirectionToTarget();
 
-        // ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ falseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // ±âº»ÀûÀ¸·Î °ø°Ý »óÅÂ¸¦ false·Î ¼³Á¤
         isAttacking = false;
 
-        // Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        // Å¸°ÙÀÌ ÃßÀû ¹üÀ§ ³»¿¡ ÀÖÀ¸¸é
         if (distance <= followRange)
         {
-            lookDirection = direction; // Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶óº¸±ï¿½
+            lookDirection = direction; // Å¸°ÙÀ» ÇâÇÑ ¹æÇâÀ¸·Î ¹Ù¶óº¸±â
 
-            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            // °ø°Ý ¹üÀ§ ³»¿¡ µé¾î¿À¸é °ø°Ý ½ÃÀÛ
             if (distance <= attackRange)
             {
-                // Å¸ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ï¿½ï¿½ Ã¼Å©
+                // Å¸°Ù°ú °ø°Ý ¹üÀ§ ³»¿¡¼­ ·¹ÀÌÄ³½ºÆ®¸¦ »ç¿ëÇÏ¿© ½ÇÁ¦ Å¸°ÙÀÌ ¸Â´ÂÁö Ã¼Å©
                 int layerMaskTarget = LayerMask.GetMask("Player");
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, attackRange,
                     layerMaskTarget);
 
                 Debug.DrawRay(transform.position, direction * attackRange, Color.red);
 
-                // Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½
+                // Å¸°ÙÀÌ ·¹ÀÌÄ³½ºÆ®¿¡ ¸ÂÀ¸¸é °ø°Ý »óÅÂ·Î ¼³Á¤
                 if (hit.collider != null)
                 {
                     isAttacking = true;
                 }
 
-                movementDirection = Vector2.zero; // ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-                return; // ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½È¯
+                movementDirection = Vector2.zero; // ÀÌµ¿À» ¸ØÃã
+                return; // °ø°Ý ÁØºñ°¡ µÇ¾úÀ¸¹Ç·Î ¹ÝÈ¯
             }
 
-            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ü¿ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+            // °ø°Ý ¹üÀ§ ¿Ü¿¡´Â Å¸°ÙÀ» ÇâÇØ ÀÌµ¿
             movementDirection = direction;
         }
 
     }
 
-    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+    // ÀûÀÌ »ç¸ÁÇßÀ» ¶§ È£ÃâµÇ´Â ¸Þ¼­µå
     public override void Death()
     {
         enemyManager.monsterList.Remove(this.gameObject);
-        base.Death(); // ï¿½Î¸ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Death() È£ï¿½ï¿½
+        base.Death(); // ºÎ¸ð Å¬·¡½ºÀÇ Death() È£Ãâ
         playerController.target = null;
         enemyManager.CheckStageClear();
     }
