@@ -17,7 +17,7 @@ public class ResourceController : MonoBehaviour //다 빼버림... 이럴거면 
     public float CurrentHealth
     {
         get => currentHealth;
-        private set => currentHealth = value;
+        protected set => currentHealth = value;
     }
     public float MaxHealth => statHandler.Health;
 

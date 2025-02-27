@@ -5620,7 +5620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
-  gameOverUI: {fileID: 162854616}
+  gameOverUI: {fileID: 0}
 --- !u!4 &930123329
 Transform:
   m_ObjectHideFlags: 0
@@ -7288,6 +7288,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1585186591704071135, guid: 106579abe972c454aad1d052914c4c9d, type: 3}
+      propertyPath: bulletSize
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1836996836007131614, guid: 106579abe972c454aad1d052914c4c9d, type: 3}
       propertyPath: m_Name
       value: Player
