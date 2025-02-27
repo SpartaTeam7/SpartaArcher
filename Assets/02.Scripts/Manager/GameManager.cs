@@ -24,11 +24,6 @@ public class GameManager : MonoBehaviour
         currentLevel = 1;
     }
 
-    public void StartGame()
-    {
-        //  ȣ��Ǹ� ������ ���۵�
-    }
-
     public void EndGame()
     {
         OnClearUI();
