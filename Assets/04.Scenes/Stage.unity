@@ -235,6 +235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level_Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 7433756748652637297, guid: 8d391fc70e8f2fe4581fb2aaf56a2dac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
