@@ -263,7 +263,7 @@ MonoBehaviour:
   weaponPivot: {fileID: 8101839395792295065}
   WeaponPrefab: {fileID: 0}
   animationHandler: {fileID: 0}
-  followRange: 15
+  followRange: 10
   attackRange: 5
 --- !u!114 &-6507612363034123544
 MonoBehaviour:
