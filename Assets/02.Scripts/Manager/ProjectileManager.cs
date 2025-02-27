@@ -20,7 +20,7 @@ public class ProjectileManager : MonoBehaviour
         GameObject obj = Instantiate(origin, startPostiion, Quaternion.identity);
 
         ProjectileController projectileController = obj.GetComponent<ProjectileController>();
-        projectileController.Init(rotation, rangeWeaponHandler,this);
+        projectileController.Init(rotation, rangeWeaponHandler);
     }
 
     public void CreateImpactParticlesAtPosition(Vector3 position, RangeWeaponHandler weaponHandler)
