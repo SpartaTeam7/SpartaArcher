@@ -15,6 +15,8 @@ public class PotalController : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         enemyManager = EnemyManager.Instance;
+
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
