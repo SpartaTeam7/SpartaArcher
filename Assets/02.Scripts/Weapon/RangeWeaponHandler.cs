@@ -46,8 +46,10 @@ public class RangeWeaponHandler : WeaponHandler
     public override void Attack()
     {
         base.Attack();
+        Debug.Log("전방 " + numberOfForwardProjectiles + " 후방 " + numberOfBackwardProjectiles);
         for (int i = 0; i < numberOfForwardProjectiles; i++)
         {
+            Debug.Log("전방");
             float angle = 0;
             CreateProjectile(Controller.LookDirection, angle, i);
         }
@@ -65,6 +67,7 @@ public class RangeWeaponHandler : WeaponHandler
         }
         for (int i = 0; i < numberOfBackwardProjectiles; i++)
         {
+            Debug.Log("후방");
             float angle = 180;
             CreateProjectile(Controller.LookDirection, angle, i);
         }

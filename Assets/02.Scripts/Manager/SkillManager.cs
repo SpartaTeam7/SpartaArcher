@@ -101,8 +101,8 @@ public class SkillManager : MonoBehaviour
         rangeWeaponHandler.CriticalChance = 0; //치명타율(최대 100)
         rangeWeaponHandler.CriticalDamage = 1.5f; //치명타 데미지
         // 근처 적 튕김 - 미구현
-        rangeWeaponHandler.ReflectionCount = 2; //벽 튕김 횟수
-        rangeWeaponHandler.IsPenetration = true; //적 관통
+        rangeWeaponHandler.ReflectionCount = 0; //벽 튕김 횟수
+        rangeWeaponHandler.IsPenetration = false; //적 관통
         rangeWeaponHandler.ExtraAttack = 0; //추가 공격 횟수
         rangeWeaponHandler.NumberOfForwardProjectiles = 1; //전방 공격 화살 갯수
         rangeWeaponHandler.NumberOfDiagonalProjectiles = 0; //사선 공격 화살 갯수
@@ -218,15 +218,15 @@ public class SkillManager : MonoBehaviour
 
     public void ChangeNumberOfForwardProjectiles(int NumberOfForwardProjectiles)
     {
-        int currnetNumberOfForwardProjectiles = rangeWeaponHandler.NumberOfBackwardProjectiles;
+        int currnetNumberOfForwardProjectiles = rangeWeaponHandler.NumberOfForwardProjectiles;
 
         if (NumberOfForwardProjectiles > 0)
         {
-            rangeWeaponHandler.NumberOfBackwardProjectiles = currnetNumberOfForwardProjectiles + NumberOfForwardProjectiles;
+            rangeWeaponHandler.NumberOfForwardProjectiles = currnetNumberOfForwardProjectiles + NumberOfForwardProjectiles;
         }
         else
         {
-            rangeWeaponHandler.NumberOfBackwardProjectiles = currnetNumberOfForwardProjectiles + NumberOfForwardProjectiles < 1 ? 1 : currnetNumberOfForwardProjectiles + NumberOfForwardProjectiles;
+            rangeWeaponHandler.NumberOfForwardProjectiles = currnetNumberOfForwardProjectiles + NumberOfForwardProjectiles < 1 ? 1 : currnetNumberOfForwardProjectiles + NumberOfForwardProjectiles;
         }
     }
 
