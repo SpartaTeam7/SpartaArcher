@@ -13,7 +13,9 @@ public class PlayerController : BaseController
     [SerializeField] private Transform attackPivot;
     private Transform playerTransform;
 
-    [SerializeField] private float fireDelay = 0.5f;
+    private RangeWeaponHandler rangeWeaponHandler;
+    private float fireDelay;
+    private int extraAttacks;
 
     private Vector3 direction;
     public Vector3 Direction
@@ -22,16 +24,19 @@ public class PlayerController : BaseController
     }
 
     private bool isFire = false;
-    
+
     private void Start()
     {
         playerTransform = GetComponent<Transform>();
         attackPivot = transform.GetChild(1).transform.GetChild(0);
         enemyManager = EnemyManager.Instance;
+        rangeWeaponHandler = GetComponentInChildren<RangeWeaponHandler>();
     }
     private void Update()
     {
-        //  ¸ØÃçÀÖÀ» ¶§¸¸ ÀûÀ» ¹Ù¶óº½
+        fireDelay = rangeWeaponHandler.Delay;
+        extraAttacks = rangeWeaponHandler.ExtraAttack;
+
         if (movementDirection.magnitude < 0.7f)
         {
             OnLook();
@@ -58,17 +63,15 @@ public class PlayerController : BaseController
         chracterRenderer.flipX = isRight;
     }
 
-    //  Input SystemÀ¸·Î Å°ÀÔ·ÂÀ» ¹Þ¾Æ ÇÃ·¹ÀÌ¾î¸¦ ¿òÁ÷ÀÌ´Â ÇÔ¼ö
     private void OnMove(InputValue value)
     {
         movementDirection = value.Get<Vector2>();
         movementDirection = movementDirection.normalized;
     }
 
-    //  Player°¡ °¡Àå °¡±î¿î ÀûÀ» ¹Ù¶óº¸´Â ÇÔ¼ö
     void OnLook()
     {
-        //  ½ºÅ×ÀÌÁö¿¡ ¸ó½ºÅÍ°¡ ÀÖÀ¸¸é °¡Àå °¡±î¿î ÀûÀ» ¹Ù¶óº¸°í, ¾øÀ¸¸é ¿òÁ÷¿´´ø ¹æÇâÀ» ¹Ù¶óº½
+        //  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶óº¸°ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶ï¿½
         if (enemyManager.monsterList.Count <= 0)
         {
             float angle = Mathf.Atan2(lookDirection.x, -lookDirection.y) * Mathf.Rad2Deg - 90f;
@@ -98,7 +101,8 @@ public class PlayerController : BaseController
                 }
             }
 
-            if (target != null) {
+            if (target != null)
+            {
                 Vector3 targetDirection = target.transform.position - attackPivot.position;
                 lookDirection = targetDirection;
                 float angle = Mathf.Atan2(targetDirection.x, -targetDirection.y) * Mathf.Rad2Deg - 90f;
@@ -118,14 +122,24 @@ public class PlayerController : BaseController
 
     private IEnumerator OnFire()
     {
-        Attack();
+        StartCoroutine(PerformExtraAttacks(extraAttacks));
         yield return new WaitForSeconds(fireDelay);
         isFire = false;
     }
 
+    private IEnumerator PerformExtraAttacks(int extraAttacks)
+    {
+        for (int i = 0; i < extraAttacks + 1; i++)
+        {
+            // Debug.Log("Attack " + i);
+            Attack();
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
     private void TargetAim()
     {
-        if (target==null)
+        if (target == null)
         {
             aim.SetActive(false);
         }
