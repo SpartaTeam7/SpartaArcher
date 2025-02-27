@@ -72,8 +72,6 @@ public class BaseController : MonoBehaviour
         }
 
         animationHandler.Move(direction);
-
-        print(this.name + " : " + direction.magnitude);
     }
 
     public void ApplyKnockback(Transform other, float power, float duration)
