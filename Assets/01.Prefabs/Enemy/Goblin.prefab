@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: -6111202468688732095}
   - component: {fileID: 855393277223086424}
   - component: {fileID: -1656035158155965718}
+  - component: {fileID: 463840717794617854}
   m_Layer: 7
   m_Name: Goblin
   m_TagString: Enemy
@@ -260,13 +261,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6349860a1a67b43a685bc882fdc1da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthChangeDelay: 0
-  healthText: {fileID: 0}
+  healthChangeDelay: 0.5
   healthBoost: 0
   invincibleTime: 0
   evasionChance: 0
   isFlying: 0
   extraLife: 0
+--- !u!114 &463840717794617854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691821267949428179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e60b78ef73d9b43a6da2ea47c92d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4351110526181128315
 GameObject:
   m_ObjectHideFlags: 0
