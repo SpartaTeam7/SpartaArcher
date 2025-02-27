@@ -10,10 +10,14 @@ public class PotalController : MonoBehaviour
 
     private GameManager gameManager;
     private EnemyManager enemyManager;
+
+    public GameObject skillUp;
     private void Start()
     {
         gameManager = GameManager.Instance;
         enemyManager = EnemyManager.Instance;
+
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -24,6 +28,7 @@ public class PotalController : MonoBehaviour
             player.transform.position = new Vector2(-1 + (gameManager.currentLevel * 25), -7);
             playerCamera.center = new Vector2(gameManager.currentLevel * 25, 0);
             gameManager.currentLevel++;
+            skillUp.SetActive(true);
         }
     }
 }

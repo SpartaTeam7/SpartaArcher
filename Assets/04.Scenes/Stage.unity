@@ -319,6 +319,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d391fc70e8f2fe4581fb2aaf56a2dac, type: 3}
+--- !u!1 &130304946 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7049975340737250818, guid: 106579abe972c454aad1d052914c4c9d, type: 3}
+  m_PrefabInstance: {fileID: 5904736004802524491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &255494014
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,6 +454,8 @@ MonoBehaviour:
   monsterList: []
   minMonsters: 3
   maxMonsters: 5
+  isClear: 0
+  skillUpSlot: {fileID: 130304946}
   spawnAreaMin: {x: 0, y: 0}
   spawnAreaMax: {x: 8, y: 7}
   minPadding: 2
@@ -5388,6 +5395,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3752878086501957061, guid: 52369cdd8f5b40a4d8806bca42a13265, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1966156803}
+    - target: {fileID: 3752878086501957061, guid: 52369cdd8f5b40a4d8806bca42a13265, type: 3}
+      propertyPath: skillUp
+      value: 
+      objectReference: {fileID: 130304946}
+    - target: {fileID: 3752878086501957061, guid: 52369cdd8f5b40a4d8806bca42a13265, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 1538880232}
     - target: {fileID: 7241224506147577025, guid: 52369cdd8f5b40a4d8806bca42a13265, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -5413,6 +5432,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3092249870517326597, guid: 43c2364684242764c9d22042a871e09a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1966156803}
+    - target: {fileID: 3092249870517326597, guid: 43c2364684242764c9d22042a871e09a, type: 3}
+      propertyPath: skillUp
+      value: 
+      objectReference: {fileID: 130304946}
+    - target: {fileID: 3092249870517326597, guid: 43c2364684242764c9d22042a871e09a, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 1538880232}
     - target: {fileID: 3466511688456528923, guid: 43c2364684242764c9d22042a871e09a, type: 3}
       propertyPath: m_Name
       value: Level_3
@@ -5480,6 +5511,7 @@ GameObject:
   m_Component:
   - component: {fileID: 930123329}
   - component: {fileID: 930123328}
+  - component: {fileID: 930123330}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5517,6 +5549,21 @@ Transform:
   - {fileID: 372795379}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &930123330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930123327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa1769cb76b1f4d028da1c272b8fd4eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 130304946}
+  objectsToExclude:
+  - {fileID: 130304946}
 --- !u!1001 &950526093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5535,11 +5582,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2294914599085304537, guid: 329748c4f590e4a8b9718cd9ecc22098, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.1
+      value: 75.3
       objectReference: {fileID: 0}
     - target: {fileID: 2294914599085304537, guid: 329748c4f590e4a8b9718cd9ecc22098, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2294914599085304537, guid: 329748c4f590e4a8b9718cd9ecc22098, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5583,7 +5630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2607462922104946536, guid: 329748c4f590e4a8b9718cd9ecc22098, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6678,6 +6725,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1966156803}
+    - target: {fileID: 5909874267694169950, guid: ba04d25fdddf2644b9c8b568e22105de, type: 3}
+      propertyPath: skillUp
+      value: 
+      objectReference: {fileID: 130304946}
     - target: {fileID: 5909874267694169950, guid: ba04d25fdddf2644b9c8b568e22105de, type: 3}
       propertyPath: playerCamera
       value: 

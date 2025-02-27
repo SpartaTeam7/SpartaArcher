@@ -8,14 +8,17 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager Instance;
 
     [SerializeField]
-    private List<GameObject> enemyPrefabs; // »ý¼ºÇÒ Àû ÇÁ¸®ÆÕ ¸®½ºÆ®
-    public List<GameObject> monsterList; // ÇöÀç Level¿¡ Á¸ÀçÇÏ´Â ¸ó½ºÅÍ ¸ñ·Ï
+    private List<GameObject> enemyPrefabs; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+    public List<GameObject> monsterList; // ï¿½ï¿½ï¿½ï¿½ Levelï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
-    //  ¸ó½ºÅÍ°¡ »ý¼ºµÉ ¼ö
+    //  ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     public int minMonsters = 3;
     public int maxMonsters = 5;
 
-    //  ¸ó½ºÅÍ »ý¼º À§Ä¡
+    public bool isClear = false;
+    public GameObject skillUpSlot;
+
+    //  ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
     public Vector2 spawnAreaMin = new Vector2(0f, 0f);
     public Vector2 spawnAreaMax = new Vector2(8f, 7f);
 
@@ -80,5 +83,14 @@ public class EnemyManager : MonoBehaviour
     public void RemoveEnemyOnDeath(GameObject enemy)
     {
         monsterList.Remove(enemy);
+        CheckStageClear();
+    }
+    private void CheckStageClear()
+    {
+        if (monsterList.Count == 0) 
+        {
+            // gameManager.StageClear();
+            Debug.Log("good");
+        }
     }
 }
