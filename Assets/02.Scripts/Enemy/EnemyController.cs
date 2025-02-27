@@ -100,6 +100,7 @@ public class EnemyController : BaseController
         enemyManager.monsterList.Remove(this.gameObject);
         base.Death(); // 부모 클래스의 Death() 호출
         playerController.target = null;
+        enemyManager.CheckStageClear();
     }
 
 }

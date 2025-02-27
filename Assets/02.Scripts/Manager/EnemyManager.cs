@@ -16,7 +16,6 @@ public class EnemyManager : MonoBehaviour
     public int minMonsters = 3;
     public int maxMonsters = 5;
 
-    public bool isClear = false;
     public GameObject skillUpSlot;
 
     //  ���� ���� ��ġ
@@ -41,7 +40,6 @@ public class EnemyManager : MonoBehaviour
 
     public void StartStage()
     {
-        isClear = false;
         if(gameManager.currentLevel < 4)
         {
             SpawnMonster();

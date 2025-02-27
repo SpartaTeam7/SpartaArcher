@@ -30,9 +30,6 @@ public class Boss : MonoBehaviour
     private float _boostInterval = 10f;
     private float _timeSinceLastBoost;
 
-
-
-
     public GameObject attackEffect;
     public GameObject buffEffect;
     
