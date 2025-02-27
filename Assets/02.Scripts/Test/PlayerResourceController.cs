@@ -36,6 +36,7 @@ public class PlayerResourceController : ResourceController
 
     protected override void Start()
     {
+        base.Start();
         StartCoroutine(InvincibilityRoutine());
     }
 
@@ -47,6 +48,7 @@ public class PlayerResourceController : ResourceController
         }
 
         timeSinceLastChange = 0f;
+
         if (change > 0)
         {
             CurrentHealth += healthBoost * change;
@@ -56,7 +58,6 @@ public class PlayerResourceController : ResourceController
             if (!isInvincible)
             {
                 CurrentHealth += change;
-                // animationHandler.Damage();
                 // healthText.UpdateHealthText();
             }
         }

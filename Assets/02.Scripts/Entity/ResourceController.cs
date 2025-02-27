@@ -17,7 +17,7 @@ public class ResourceController : MonoBehaviour //다 빼버림... 이럴거면 
     public float CurrentHealth
     {
         get => currentHealth;
-        protected set => currentHealth = value;
+        set => currentHealth = value;
     }
     public float MaxHealth => statHandler.Health;
 
@@ -47,6 +47,7 @@ public class ResourceController : MonoBehaviour //다 빼버림... 이럴거면 
 
     public bool ChangeHealth(float change)
     {
+        animationHandler.Damage();
         return CalculateCalChangeHealth(change);
     }
 
