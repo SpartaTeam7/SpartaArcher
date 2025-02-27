@@ -169,6 +169,31 @@ void OnSlotButtonClick(int slotIndex, int spriteIndex)
         SkillManager.Instance.ChangePower(5);
         upgradeMessage = "공격력이 5 증가했습니다";
     }
+    else if(spriteName == "Side")
+    {
+        SkillManager.Instance.ChangeNumberOfSideProjectiles(1);
+        upgradeMessage = "좌우 화살이 한 개 증가하였습니다";
+    }
+    else if(spriteName == "Reflection")
+    {
+        SkillManager.Instance.ChangeReflectionCount(1);
+        upgradeMessage = "화살이 한 번 더 튕깁니다";
+    }
+    else if(spriteName == "Critical")
+    {
+        SkillManager.Instance.ChangeCriticalChance(20);
+        upgradeMessage = "크리티컬 확률 20퍼 증가";
+    }
+    else if(spriteName == "CriDamage")
+    {
+        SkillManager.Instance.ChangeCriticalDamage(10);
+        upgradeMessage = "크리티컬 데미지 10퍼센트 증가";
+    }
+    else if(spriteName == "Dps")
+    {
+        SkillManager.Instance.ChangeDelay(0.1f);
+        upgradeMessage = "공속 증가";
+    }
 
     upgradeTxt.text = upgradeMessage;
 
