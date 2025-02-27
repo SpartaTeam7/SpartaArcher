@@ -10,14 +10,18 @@ public class Boss : MonoBehaviour
     private static readonly int Walk = Animator.StringToHash("Walk");
     private static readonly int Attack = Animator.StringToHash("Attack");
     private static readonly int Die = Animator.StringToHash("IsDie");
-
-    public float bossHp;
+    
+    public EnemyManager enemyManager;
+    public float MaxHealth;
+    public float currBossHp;
     public bool isDead = false;
-    private StatHandler _stHandler;
+
     //private HealthSystem healthSystem;
     private Animator _animator;
     private Transform _playerTf;
     private StatHandler _playerStatHandler;
+
+    private ResourceController _resourceCtr;
 
     public float followSpeed = 0.7f;
     private Vector2 _movement;
@@ -41,41 +45,53 @@ public class Boss : MonoBehaviour
 
     private float currentFill;
 
-    public float fullHealth;
+    
 
     #endregion
 
     void Start()
+{
+    _resourceCtr = GetComponent<ResourceController>();
+
+    // Find the EnemyManager in the scene if not attached to the same GameObject
+    enemyManager = FindObjectOfType<EnemyManager>();
+    
+    if (enemyManager == null)
     {
-        _stHandler = GetComponent<StatHandler>();
-        bossHp = _stHandler.Health;
-        
-
-        _animator = GetComponent<Animator>();
-        if (_animator == null)
-        {
-            return;
-        }
-
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj == null)
-        {
-            return;
-        }
-
-        _playerTf = playerObj.transform;
-        _playerStatHandler = playerObj.GetComponent<StatHandler>();
-
-        if (_playerStatHandler == null)
-        {
-            Debug.LogError("[Boss] Player does not have a StatHandler component.");
-        }
-        attackEffect.SetActive(false);
-        buffEffect.SetActive(false);
-
-         currentFill = 1f;
-        UpdateHealthBar();
+        Debug.LogError("[Boss] EnemyManager is not found in the scene.");
+        return;
     }
+    
+    MaxHealth = _resourceCtr.MaxHealth;
+    currBossHp = MaxHealth;
+
+    _animator = GetComponent<Animator>();
+    if (_animator == null)
+    {
+        return;
+    }
+
+    GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+    if (playerObj == null)
+    {
+        return;
+    }
+
+    _playerTf = playerObj.transform;
+    _playerStatHandler = playerObj.GetComponent<StatHandler>();
+
+    if (_playerStatHandler == null)
+    {
+        Debug.LogError("[Boss] Player does not have a StatHandler component.");
+    }
+
+    attackEffect.SetActive(false);
+    buffEffect.SetActive(false);
+
+    currentFill = 1f;
+    UpdateHealthBar();
+}
+
 
     private void Update()
 {
@@ -92,7 +108,7 @@ public class Boss : MonoBehaviour
 
     // 이동속도 조절
     bool isBoosted = _speedBoostTimer > 0;
-    followSpeed = isBoosted ? 2f : 0.7f;
+    followSpeed = isBoosted ? 5f : 0.7f;
     _speedBoostTimer -= Time.deltaTime;
 
     // 이동 속도가 빠르면 버프 이펙트 활성화, 느려지면 비활성화
@@ -117,7 +133,7 @@ public class Boss : MonoBehaviour
         if (attackEffect != null) attackEffect.SetActive(false);
     }
     
-    if(bossHp <= 0)
+    if (currBossHp <= 0 && !isDead)
     {
         HandleDeath();
         return;
@@ -161,7 +177,6 @@ public class Boss : MonoBehaviour
             if (_playerStatHandler != null)
             {
                 _playerStatHandler.TakeDamage(10);
-                Debug.Log($"[Boss] Player hit! Remaining HP: {_playerStatHandler.Health}");
             }
             yield return new WaitForSeconds(0.45f);
         }
@@ -174,14 +189,17 @@ public class Boss : MonoBehaviour
     }
     private void HandleDeath()
     {
-        if(isDead) return;
-        isDead = true;
+        if (isDead) return;  // 이미 죽었으면 더 이상 처리하지 않음
+
+        isDead = true; // 죽음 상태로 설정
         _animator.SetBool(Die, true); // 사망 애니메이션 실행
-        Debug.Log("[Boss] Boss has died!");
+
+        enemyManager.monsterList.Remove(this.gameObject); // 보스가 죽으면 monsterList에서 제거
 
         // 일정 시간 후 오브젝트 비활성화 (애니메이션 재생 후 사라지게 함)
         StartCoroutine(DisableAfterDeath());
     }
+
     private IEnumerator DisableAfterDeath()
     {
         // 현재 실행 중인 애니메이션이 "Death"인지 확인하고 대기
@@ -193,11 +211,11 @@ public class Boss : MonoBehaviour
         // 애니메이션이 완료될 때까지 대기
         yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
 
-        gameObject.SetActive(false); // 오브젝트 비활성화
+        Destroy(gameObject); // 오브젝트 삭제
     }
     private void UpdateHealthBar()
     {
-        float healthPer = bossHp / fullHealth;
+        float healthPer = currBossHp / MaxHealth;
         if(isHealthAnim)
         {
             currentFill = Mathf.Lerp(currentFill, healthPer, Time.deltaTime * 5);
@@ -207,7 +225,7 @@ public class Boss : MonoBehaviour
         }
 
         fillHealthBar.fillAmount = currentFill;
-        healthText.text = $"{(int)bossHp} / {(int)fullHealth}";
+        healthText.text = $"{(int)currBossHp} / {(int)MaxHealth}";
         healthText.enabled = isShowHpNum;
     }
 }

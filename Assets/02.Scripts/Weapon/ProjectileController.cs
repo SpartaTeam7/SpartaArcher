@@ -107,6 +107,16 @@ public class ProjectileController : MonoBehaviour
             {
                 DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestory);
             }
+            if(collision.gameObject == GameObject.Find("Boss"))
+            {
+
+                Boss boss = collision.gameObject.GetComponent<Boss>();
+                if(boss != null)
+                {
+                boss.currBossHp += damage;
+                Debug.Log($"{boss.currBossHp}");
+                }
+            }
         }
     }
 

@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         
         if(Input.GetMouseButtonDown(0))
         {
-            _boss.bossHp -= 10f;
+            _boss.currBossHp -= 10f;
         }
     }
     public void TakeDamage(float damage)
