@@ -3,17 +3,16 @@ using System.Collections;
 
 public class ResourceController : MonoBehaviour
 {
-    [SerializeField] private float healthChangeDelay = 0f;
+    [SerializeField] private float healthChangeDelay = 0.5f;
 
     private BaseController baseController;
     private StatHandler statHandler;
+    private AnimationHandler animationHandler;
 
     private float timeSinceLastChange = float.MaxValue;
 
     public float CurrentHealth { get; private set; }
     public float MaxHealth => statHandler.Health;
-
-    public HealthText healthText;
 
     [SerializeField] private float healthBoost;
     public float HealthBoost { get => healthBoost; set => healthBoost = value; }
@@ -47,9 +46,8 @@ public class ResourceController : MonoBehaviour
     private void Awake()
     {
         statHandler = GetComponent<StatHandler>();
-        // animationHandler = GetComponent<AnimationHandler>();
+        animationHandler = GetComponent<AnimationHandler>();
         baseController = GetComponent<BaseController>();
-        healthText = GetComponent<HealthText>();
     }
 
     private void Start()
@@ -79,7 +77,7 @@ public class ResourceController : MonoBehaviour
             timeSinceLastChange += Time.deltaTime;
             if (timeSinceLastChange >= healthChangeDelay)
             {
-                // animationHandler.InvincibilityEnd();
+                animationHandler.InvincibilityEnd();
             }
         }
     }
@@ -101,7 +99,7 @@ public class ResourceController : MonoBehaviour
             if (!isInvincible)
             {
                 CurrentHealth += change;
-                // animationHandler.Damage();
+                animationHandler.Damage();
                 // healthText.UpdateHealthText();
             }
         }

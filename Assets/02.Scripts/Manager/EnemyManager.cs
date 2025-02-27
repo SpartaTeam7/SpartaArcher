@@ -21,12 +21,16 @@ public class EnemyManager : MonoBehaviour
     //  ���� ���� ��ġ
     public Vector2 spawnAreaMin = new Vector2(0f, 0f);
     public Vector2 spawnAreaMax = new Vector2(8f, 7f);
-
     private List<Vector2> monsterPositions;
 
     public float minPadding = 2f;
 
+    public bool isClear = true;
+
+    [SerializeField] private GameObject skillUpgrade;
+
     private GameManager gameManager;
+
 
     private void Awake()
     {
@@ -38,8 +42,28 @@ public class EnemyManager : MonoBehaviour
         gameManager = GameManager.Instance;
     }
 
+    private void Update()
+    {
+        ClearCheck();
+    }
+
+    private void ClearCheck()
+    {
+        if(!isClear && monsterList.Count <= 0)
+        {
+            Clear();
+        }
+    }
+
+    private void Clear()
+    {
+        isClear = true;
+        skillUpgrade.SetActive(true);
+    }
+
     public void StartStage()
     {
+        isClear = false;
         SpawnMonster();
     }
 
@@ -75,7 +99,7 @@ public class EnemyManager : MonoBehaviour
                 }
             }
             int monsterIndex = Random.Range(0, enemyPrefabs.Count);
-            Instantiate(enemyPrefabs[monsterIndex], spawnPosition, Quaternion.identity);
+            monsterList.Add(Instantiate(enemyPrefabs[monsterIndex], spawnPosition, Quaternion.identity));
             monsterPositions.Add(spawnPosition);
         }
     }

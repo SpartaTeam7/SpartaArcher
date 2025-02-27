@@ -33,6 +33,7 @@ public class BaseController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         statHandler = GetComponent<StatHandler>();
+        animationHandler = GetComponent<AnimationHandler>();
 
         if (WeaponPrefab != null)
             weaponHandler = Instantiate(WeaponPrefab, weaponPivot);
@@ -70,10 +71,9 @@ public class BaseController : MonoBehaviour
             lookDirection = direction / statHandler.Speed;
         }
 
-        if(animationHandler != null)
-        {
-            animationHandler.Move(direction);
-        }
+        animationHandler.Move(direction);
+
+        print(this.name + " : " + direction.magnitude);
     }
 
     public void ApplyKnockback(Transform other, float power, float duration)
