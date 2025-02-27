@@ -211,6 +211,7 @@ public class Boss : MonoBehaviour
         // 애니메이션이 완료될 때까지 대기
         yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
 
+        GameManager.Instance.EndGame();
         Destroy(gameObject); // 오브젝트 삭제
     }
     private void UpdateHealthBar()

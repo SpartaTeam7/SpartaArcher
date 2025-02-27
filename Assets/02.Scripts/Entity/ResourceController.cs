@@ -47,7 +47,10 @@ public class ResourceController : MonoBehaviour //다 빼버림... 이럴거면 
 
     public bool ChangeHealth(float change)
     {
-        animationHandler.Damage();
+        if (animationHandler != null)
+        {
+            animationHandler.Damage();
+        }
         return CalculateCalChangeHealth(change);
     }
 
