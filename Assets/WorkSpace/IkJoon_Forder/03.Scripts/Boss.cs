@@ -144,7 +144,7 @@ public class Boss : MonoBehaviour
         _animator.SetFloat(Horizontal, _movement.x);
         _animator.SetFloat(Vertical, _movement.y);
         _animator.SetBool(Walk, _movement.magnitude > 0.1f);
-    }
+    } 
 
     private IEnumerator DelayedAttackStart()
     {

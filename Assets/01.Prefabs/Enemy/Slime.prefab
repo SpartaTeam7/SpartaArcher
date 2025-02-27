@@ -127,6 +127,7 @@ MonoBehaviour:
   WeaponPrefab: {fileID: 0}
   animationHandler: {fileID: 0}
   followRange: 15
+  attackRange: 5
 --- !u!114 &5938647550072036192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  speed: 10
+  speed: 2
 --- !u!114 &-6338357255854425486
 MonoBehaviour:
   m_ObjectHideFlags: 0

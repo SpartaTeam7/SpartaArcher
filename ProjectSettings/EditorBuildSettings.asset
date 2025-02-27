@@ -9,15 +9,6 @@ EditorBuildSettings:
     path: Assets/WorkSpace/IkJoon_Forder/01.Scenes/StartScene.unity
     guid: 4fc650a1c20904c569861479a14ca0af
   - enabled: 1
-    path: Assets/WorkSpace/CB/PlayerTest.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/WorkSpace/SJ/MapScene/Map.unity
-    guid: 5cd759219b1944c2cbdbd7245951cf7f
-  - enabled: 1
-    path: Assets/WorkSpace/SJ/MapScene/Map 1.unity
-    guid: e568d7c4fbc9d4c42b9faa8c73493c7a
-  - enabled: 1
     path: Assets/04.Scenes/Stage.unity
     guid: 3c9b1226f36b30e42b1765b4d98e2e2c
   m_configObjects: {}

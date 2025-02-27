@@ -9,6 +9,7 @@ using UnityEditor;
 public class ButtonManager : MonoBehaviour
 {
     public GameObject slotMachine;
+    private PotalController _potal;
     public string sceneName;
     
     public void OnClickStartBtn()

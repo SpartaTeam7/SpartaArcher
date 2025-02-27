@@ -236,10 +236,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8486257581749946559, guid: 106579abe972c454aad1d052914c4c9d, type: 3}
+      propertyPath: m_Name
+      value: HealBallObj
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1836996836007131614, guid: 106579abe972c454aad1d052914c4c9d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 802515212}
   m_SourcePrefab: {fileID: 100100000, guid: 106579abe972c454aad1d052914c4c9d, type: 3}
 --- !u!1 &474314182 stripped
 GameObject:
@@ -416,6 +423,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &802515203 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1836996836007131614, guid: 106579abe972c454aad1d052914c4c9d, type: 3}
+  m_PrefabInstance: {fileID: 418942319}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &802515212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802515203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f9cedfa868e7443bb5a7bc59dfdb0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &848190633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -657,6 +681,10 @@ PrefabInstance:
     - target: {fileID: 2607462922104946536, guid: 329748c4f590e4a8b9718cd9ecc22098, type: 3}
       propertyPath: m_Name
       value: Boss (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2607462922104946536, guid: 329748c4f590e4a8b9718cd9ecc22098, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
