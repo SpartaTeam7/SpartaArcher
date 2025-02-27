@@ -40,7 +40,7 @@ public class EnemyManager : MonoBehaviour
 
     public void StartStage()
     {
-        if(gameManager.currentLevel < 4)
+        if (gameManager.currentLevel < 4)
         {
             SpawnMonster();
         }
@@ -50,7 +50,7 @@ public class EnemyManager : MonoBehaviour
     {
         Vector2 mapPosition = new Vector2(gameManager.currentLevel * 25f - 25f, 0);
         monsterPositions = new List<Vector2>();
-        int monsterCount = Random.Range(minMonsters, maxMonsters + 1);
+        int monsterCount = Random.Range(minMonsters + (gameManager.currentLevel * 2), maxMonsters + 1 + (gameManager.currentLevel * 2));
 
         for (int i = 0; i < monsterCount; i++)
         {
@@ -89,7 +89,7 @@ public class EnemyManager : MonoBehaviour
     }
     public void CheckStageClear()
     {
-        if (monsterList.Count == 0) 
+        if (monsterList.Count == 0)
         {
             // gameManager.StageClear();
             Debug.Log("good");

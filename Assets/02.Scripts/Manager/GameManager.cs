@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     public int currentLevel;
 
     [SerializeField] GameObject gameOverUI;
-    
+    [SerializeField] GameObject clearUI;
+
+
     private void Awake()
     {
         Instance = this;
@@ -29,7 +31,12 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        //  ������ ������ ������ ����ǰ� ����ȭ������ ���ư�
+        OnClearUI();
+    }
+
+    private void OnClearUI()
+    {
+        clearUI.SetActive(true);
     }
 
     public void GameOver()
