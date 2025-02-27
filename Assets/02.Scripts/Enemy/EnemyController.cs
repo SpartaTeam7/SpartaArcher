@@ -16,7 +16,12 @@ public class EnemyController : BaseController
     [SerializeField] private float followRange = 15f;
 
     // 공격 범위
-    [SerializeField] private float attackRange = 10f; 
+    [SerializeField] private float attackRange = 10f;
+
+    [SerializeField] private RangeWeaponHandler rangeWeaponHandler;
+    private float lastRangedAttackTime;
+
+    private ProjectileController projectileController;
 
     public void Start()
     {
@@ -26,6 +31,7 @@ public class EnemyController : BaseController
     // 초기화 메서드: EnemyManager와 타겟을 설정
     public void Init()
     {
+
         enemyManager = EnemyManager.Instance;
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         target = GameObject.Find("Player").transform;
@@ -82,24 +88,32 @@ public class EnemyController : BaseController
                 if (hit.collider != null)
                 {
                     isAttacking = true;
+
+                    return;
                 }
 
-                movementDirection = Vector2.zero; // 이동을 멈춤
-                return; // 공격 준비가 되었으므로 반환
             }
 
-            // 공격 범위 외에는 타겟을 향해 이동
+
+            movementDirection = Vector2.zero; // 이동을 멈춤        
+
+            //  타겟을 향해 이동
             movementDirection = direction;
         }
 
     }
-
-    // 적이 사망했을 때 호출되는 메서드
+    private void PerformRangedAttack()
+    {
+        // 원거리 공격을 RangeWeaponHandler에서 처리하도록 호출
+        if (rangeWeaponHandler != null)
+        {
+            rangeWeaponHandler.Attack(); // 원거리 공격을 실행
+        }
+    }
     public override void Death()
     {
         enemyManager.monsterList.Remove(this.gameObject);
-        base.Death(); // 부모 클래스의 Death() 호출
+        base.Death();
         playerController.target = null;
     }
-
 }
