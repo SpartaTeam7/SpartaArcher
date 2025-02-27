@@ -26,7 +26,6 @@ public class EnemyManager : MonoBehaviour
 
     public float minPadding = 2f;
 
-    public bool isClear = true;
 
     [SerializeField] private GameObject skillUpgrade;
 
