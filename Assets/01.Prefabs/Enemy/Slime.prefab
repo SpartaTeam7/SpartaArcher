@@ -130,7 +130,7 @@ MonoBehaviour:
   WeaponPrefab: {fileID: 4733608236091953518}
   animationHandler: {fileID: 0}
   attackPivot: {fileID: 9031201090647712796}
-  followRange: 15
+  followRange: 10
   attackRange: 5
   fireDelay: 0.2
 --- !u!114 &5938647550072036192
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 0.2
   weaponSize: 1
-  power: 1
+  power: 2
   speed: 5
   attackRange: 10
   criticalChance: 30
