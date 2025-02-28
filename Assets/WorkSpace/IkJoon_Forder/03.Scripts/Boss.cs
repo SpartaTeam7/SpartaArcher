@@ -176,7 +176,11 @@ public class Boss : MonoBehaviour
         {
             if (_playerStatHandler != null)
             {
-                _playerStatHandler.TakeDamage(10);
+                PlayerResourceController playerResourceController = _playerStatHandler.GetComponent<PlayerResourceController>();
+                if(playerResourceController != null)
+                {
+                    playerResourceController.CurrentHealth -= 5;
+                }
             }
             yield return new WaitForSeconds(0.45f);
         }
@@ -211,8 +215,8 @@ public class Boss : MonoBehaviour
         // 애니메이션이 완료될 때까지 대기
         yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
 
-        GameManager.Instance.EndGame();
         Destroy(gameObject); // 오브젝트 삭제
+        GameManager.Instance.EndGame();
     }
     private void UpdateHealthBar()
     {
