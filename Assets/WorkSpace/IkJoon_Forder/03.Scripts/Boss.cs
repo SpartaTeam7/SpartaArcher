@@ -43,6 +43,8 @@ public class Boss : MonoBehaviour
     [SerializeField] private bool isShowHpNum = true;
     [SerializeField] private bool isHealthAnim = true;
 
+    public float damage;
+
     private float currentFill;
 
     
@@ -179,7 +181,7 @@ public class Boss : MonoBehaviour
                 PlayerResourceController playerResourceController = _playerStatHandler.GetComponent<PlayerResourceController>();
                 if(playerResourceController != null)
                 {
-                    playerResourceController.CurrentHealth -= 5;
+                    playerResourceController.ChangeHealth(-damage);
                 }
             }
             yield return new WaitForSeconds(0.45f);
