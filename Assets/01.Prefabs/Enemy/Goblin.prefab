@@ -5258,9 +5258,9 @@ MonoBehaviour:
   weaponPivot: {fileID: 612475086042776654}
   WeaponPrefab: {fileID: 4913732453552724580}
   animationHandler: {fileID: 0}
-  attackPivot: {fileID: 3132121999057208741}
+  attackPivot: {fileID: 612475086042776654}
   followRange: 10
-  attackRange: 1
+  attackRange: 1.5
   fireDelay: 1
 --- !u!114 &855393277223086424
 MonoBehaviour:
@@ -5274,8 +5274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ded049835278c42bdc593b8dcc209f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 500
-  speed: 3
+  health: 15
+  speed: 4
 --- !u!114 &463840717794617854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5451,7 +5451,7 @@ MonoBehaviour:
   isOnKnockback: 0
   knockbackPower: 0.1
   knockbackTime: 0.5
-  colliderBoxSize: {x: 1, y: 1}
+  colliderBoxSize: {x: 1.5, y: 1.5}
   attackEff: {fileID: 4164063827509383423}
 --- !u!1 &6855407981441951087
 GameObject:

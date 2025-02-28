@@ -36,6 +36,9 @@ public class EnemyController : BaseController
             isFire = true;
             StartCoroutine(OnFire());
         }
+        {
+            Rotate(lookDirection);
+        }
 
     }
 
@@ -119,6 +122,14 @@ public class EnemyController : BaseController
             movementDirection = direction;
         }
 
+    }
+
+    private void Rotate(Vector2 direction)
+    {
+        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        bool isLeft = Mathf.Abs(rotZ) > 90f;
+
+        characterRenderer.flipX = isLeft;
     }
 
     protected override void Attack()

@@ -6,7 +6,7 @@ public class BaseController : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody;
 
-    [SerializeField] private SpriteRenderer characterRenderer;
+    [SerializeField] protected SpriteRenderer characterRenderer;
     [SerializeField] private Transform weaponPivot;
 
     //  �÷��̾��� ���� ����

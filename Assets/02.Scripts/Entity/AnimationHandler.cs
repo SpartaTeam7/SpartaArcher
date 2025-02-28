@@ -20,7 +20,7 @@ public class AnimationHandler : MonoBehaviour
 
     public void Damage()
     {
-        anim.SetBool(IsDamage, true);
+        anim.SetTrigger(IsDamage);
     }
 
     public void InvincibilityEnd()
