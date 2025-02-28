@@ -13,15 +13,18 @@ public class GameOverUI : MonoBehaviour
     {
         restartButton.onClick.AddListener(OnClickRestartButton);
         menuButton.onClick.AddListener(OnClickMenuButton);
+        Time.timeScale = 0;
     }
 
     public void OnClickRestartButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
     }
 
     public void OnClickMenuButton()
     {
         SceneManager.LoadScene("StartScene");
+        Time.timeScale = 1;
     }
 }
